@@ -1,0 +1,3550 @@
+local t1 = {}
+local t2 = {}
+local v3 = unpack or table.unpack
+
+t2[1] = 'uwu'
+t2[2] = false
+
+local v4 = (identifyexecutor and identifyexecutor() or 'Unknown'):lower():find('xeno') ~= nil
+
+t2[3] = {}
+
+if v4 then
+    local v5 = t2[3]
+
+    t1[1] = function()
+        if typeof(game) ~= 'Instance' then
+            return false
+        end
+        if typeof(workspace) ~= 'Instance' then
+            return false
+        end
+
+        return true
+    end
+    v5[1] = {
+        name = 'game_instance',
+        run = t1[1],
+    }
+
+    local v6 = t2[3]
+
+    t1[1] = function()
+        if typeof(script) ~= 'Instance' then
+            return false
+        end
+        if not script:IsA('LuaSourceContainer') then
+            return false
+        end
+
+        return true
+    end
+    v6[2] = {
+        name = 'script_valid',
+        run = t1[1],
+    }
+
+    local v7 = t2[3]
+
+    t1[1] = function()
+        if type(game.PlaceId) ~= 'number' then
+            return false
+        end
+        if type(game.JobId) ~= 'string' then
+            return false
+        end
+        if #game.JobId == 0 then
+            return false
+        end
+
+        return true
+    end
+    v7[3] = {
+        name = 'game_props',
+        run = t1[1],
+    }
+
+    local v8 = t2[3]
+
+    t1[1] = function()
+        local ok, result = pcall(game.GetService, game, 'Players')
+        local v187 = not ok
+
+        if not v187 then
+            v187 = typeof(result) ~= 'Instance'
+        end
+        if v187 then
+            return false
+        end
+
+        local LocalPlayer = result.LocalPlayer
+
+        if not LocalPlayer or not LocalPlayer:IsA('Player') then
+            return false
+        end
+
+        return true
+    end
+    v8[4] = {
+        name = 'local_player',
+        run = t1[1],
+    }
+
+    local v9 = t2[3]
+
+    t1[1] = function()
+        local LocalPlayer = game:GetService('Players').LocalPlayer
+
+        if not LocalPlayer then
+            return false
+        end
+
+        local v190 = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait(5)
+
+        if not v190 then
+            return false
+        end
+
+        local HumanoidRootPart = v190:FindFirstChild('HumanoidRootPart')
+
+        if not HumanoidRootPart or not HumanoidRootPart:IsA('BasePart') then
+            return false
+        end
+
+        return true
+    end
+    v9[5] = {
+        name = 'character',
+        run = t1[1],
+    }
+
+    local v10 = t2[3]
+
+    t1[1] = function()
+        for _, v in ipairs({
+            'RunService',
+            'ReplicatedStorage',
+            'UserInputService',
+            'TweenService',
+        })do
+            local ok, result = pcall(game.GetService, game, v)
+            local v196 = not ok
+
+            if not v196 then
+                v196 = typeof(result) ~= 'Instance'
+            end
+            if v196 then
+                return false
+            end
+        end
+
+        return true
+    end
+    v10[6] = {
+        name = 'services',
+        run = t1[1],
+    }
+
+    local v11 = t2[3]
+
+    t1[1] = function()
+        if typeof(Vector3.new(0, 0, 0)) ~= 'Vector3' then
+            return false
+        end
+        if typeof(CFrame.new()) ~= 'CFrame' then
+            return false
+        end
+        if typeof(Color3.new()) ~= 'Color3' then
+            return false
+        end
+        if typeof(UDim2.new()) ~= 'UDim2' then
+            return false
+        end
+        if typeof(Vector2.new()) ~= 'Vector2' then
+            return false
+        end
+
+        return true
+    end
+    v11[7] = {
+        name = 'data_types',
+        run = t1[1],
+    }
+
+    local v12 = t2[3]
+
+    t1[1] = function()
+        local ok, result = pcall(getfenv, 0)
+        local v199 = not ok
+
+        if not v199 then
+            v199 = type(result) ~= 'table'
+        end
+        if v199 then
+            return false
+        end
+
+        local ok2, result2 = pcall(getfenv, 1)
+        local v202 = not ok2
+
+        if not v202 then
+            v202 = type(result2) ~= 'table'
+        end
+        if v202 then
+            return false
+        end
+        if result.game == nil and result2.game == nil then
+            return false
+        end
+        if result.workspace == nil and result2.workspace == nil then
+            return false
+        end
+
+        return true
+    end
+    v12[8] = {
+        name = 'getfenv_check',
+        run = t1[1],
+    }
+
+    local v13 = t2[3]
+
+    t1[1] = function()
+        local v203 = getfenv(0)
+
+        if type(v203) ~= 'table' then
+            return false
+        end
+        if type(v203.print) ~= 'function' then
+            return false
+        end
+        if type(v203.pcall) ~= 'function' then
+            return false
+        end
+        if type(v203.typeof) ~= 'function' then
+            return false
+        end
+        if type(v203.tick) ~= 'function' then
+            return false
+        end
+
+        return true
+    end
+    v13[9] = {
+        name = 'getenv_check',
+        run = t1[1],
+    }
+
+    local v14 = t2[3]
+
+    t1[1] = function()
+        local ok, result = pcall(game.GetService, game, 'RunService')
+        local v206 = result
+
+        if not ok or typeof(v206) ~= 'Instance' then
+            return false
+        end
+
+        local ok3 = pcall(function()
+            return v206:IsClient()
+        end)
+        local ok4 = pcall(function()
+            return v206:IsServer()
+        end)
+        local v209 = not ok3
+
+        if v209 then
+            v209 = not ok4
+        end
+        if v209 then
+            return false
+        end
+
+        return true
+    end
+    v14[10] = {
+        name = 'runservice',
+        run = t1[1],
+    }
+
+    local function v15()
+        for i = 1, #t2[3]do
+            local ok, result = pcall(t2[3][i].run)
+            local v213 = not ok
+
+            if not v213 then
+                v213 = not result
+            end
+            if v213 then
+                t2[2] = true
+
+                return
+            end
+        end
+    end
+
+    v15()
+
+    if t2[2] then
+        print(t2[1])
+
+        return
+    end
+
+    t1[1] = game:GetService('RunService')
+
+    local timestamp = tick()
+
+    t1[1].Heartbeat:Connect(function()
+        if tick() - timestamp >= 0.5 then
+            v15()
+
+            if t2[2] then
+                print(t2[1])
+            end
+        end
+    end)
+else
+    print('Executor n\u{e3}o \u{e9} Xeno - Anti-Tamper desativado')
+end
+
+t2[4] = game:GetService('RunService')
+t2[5] = game:GetService('Players')
+
+local UserInputService = game:GetService('UserInputService')
+
+t2[6] = game:GetService('InsertService')
+
+local ContentProvider = game:GetService('ContentProvider')
+
+t2[7] = t2[5].LocalPlayer
+whscript = 'Touchline Script'
+webhookexecUrl = 'https://sentinelhook.lol/api.php?id=UyH057jR4hMTQY6'
+t1[1] = gethui()
+Instance.new('Folder', t1[1]).Name = 'screen'
+
+local LocalPlayer = game:GetService('Players').LocalPlayer
+local HttpService = game:GetService('HttpService')
+local UserId = LocalPlayer.UserId
+
+t1[1] = HttpService:JSONDecode(game:HttpGet(
+[[https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=]] .. UserId .. '&size=420x420&format=Png&isCircular=false')).data[1].imageUrl
+
+local v22 = '```' .. whscript .. '```'
+local t3 = {
+    name = '\u{1f4bb} Script',
+    value = v22,
+    inline = false,
+}
+local v24 = '```' .. LocalPlayer.Name .. ' (' .. LocalPlayer.DisplayName .. ')\nID: ' .. UserId .. '\nHWID: ' .. game:GetService('RbxAnalyticsService'):GetClientId() .. '\nExecutor: ' .. identifyexecutor() .. '```'
+local t4 = {
+    name = '\u{1f464} Player',
+    value = v24,
+    inline = false,
+}
+local v26 = '```Age: ' .. LocalPlayer.AccountAge .. ' days\nCreated: ' .. os.date('%Y-%m-%d', os.time() - LocalPlayer.AccountAge * 86400) .. '```'
+local t5 = {
+    name = '\u{1f4c5} Account',
+    value = v26,
+    inline = false,
+}
+local v28 = '```' .. game:GetService('MarketplaceService'):GetProductInfo(game.PlaceId).Name .. '\nID: ' .. game.PlaceId .. '\nJob: ' .. game.JobId .. '```'
+local t6 = {
+    name = '\u{1f3ae} Game',
+    value = v28,
+    inline = false,
+}
+local v30 = '```Players: ' .. #game:GetService('Players'):GetPlayers() .. '/' .. game:GetService('Players').MaxPlayers .. '\nPing: ' .. game:GetService('Stats').Network.ServerStatsItem['Data Ping']:GetValueString() .. '```'
+local t7 = {
+    t3,
+    t4,
+    t5,
+    t6,
+    {
+        name = '\u{1f579}\u{fe0f} Server',
+        value = v30,
+        inline = false,
+    },
+}
+local t8 = {
+    url = t1[1],
+}
+
+t1[1] = {
+    {
+        title = '\u{1f680} Script Executed',
+        color = 0,
+        fields = t7,
+        thumbnail = t8,
+    },
+}
+t1[1] = {
+    content = 'Execution Success!',
+    embeds = t1[1],
+}
+
+local _http_request = http_request
+
+if not _http_request then
+    _http_request = request or syn and syn.request
+end
+
+request = _http_request
+
+local _request = request
+local _webhookexecUrl = webhookexecUrl
+local json = HttpService:JSONEncode(t1[1])
+local t9 = {
+    ['content-type'] = 'application/json',
+}
+
+_request({
+    Url = _webhookexecUrl,
+    Body = json,
+    Method = 'POST',
+    Headers = t9,
+})
+
+t1[1] = game
+
+local function v38(p1)
+    local t10 = {}
+
+    for v218, v219 in ipairs(p1:GetChildren())do
+        if v219:IsA('ScreenGui') and v219.Name == 'ScreenGui' then
+            for _, descendant in ipairs(v219:GetDescendants())do
+                if descendant:IsA('Frame') and descendant.Name == 'BackgroundContainer' then
+                    table.insert(t10, v219)
+
+                    break
+                end
+            end
+        end
+    end
+    for _, v in ipairs(t10)do
+        v:Destroy()
+    end
+end
+
+v38(t1[1]:GetService('CoreGui'))
+v38(t2[7].PlayerGui)
+
+if UserInputService.TouchEnabled and not UserInputService.MouseEnabled then
+    t1[1] = Instance.new('ScreenGui')
+
+    local ImageButton = Instance.new('ImageButton')
+    local UICorner = Instance.new('UICorner')
+    local CoreGui = game.CoreGui
+
+    t1[1].Parent = CoreGui
+
+    local Sibling = Enum.ZIndexBehavior.Sibling
+
+    t1[1].ZIndexBehavior = Sibling
+    ImageButton.Parent = t1[1]
+    ImageButton.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+    ImageButton.BackgroundTransparency = 1
+    ImageButton.BorderSizePixel = 0
+    ImageButton.Position = UDim2.new(3.390842095996E-7, 209, 0, -47)
+    ImageButton.Size = UDim2.new(0, 45, 0, 45)
+    ImageButton.Draggable = true
+    ImageButton.Image = 'http://www.roblox.com/asset/?id=113136039614918'
+    UICorner.CornerRadius = UDim.new(1, 0)
+    UICorner.Parent = ImageButton
+
+    ImageButton.MouseButton1Down:Connect(function()
+        local VirtualInputManager = game:GetService('VirtualInputManager')
+
+        VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.End, false, game)
+        task.wait(0.1)
+        VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.End, false, game)
+    end)
+end
+
+local v43 = loadstring(game:HttpGet('https://p.ip.fi/MzAW.txt'))()
+
+t2[8] = loadstring(game:HttpGet(
+[[https://raw.githubusercontent.com/discoart/FluentPlus/refs/heads/main/Beta.lua]]))()
+t2[9] = loadstring(game:HttpGet(
+[[https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua]]))()
+t1[1] = loadstring(game:HttpGet(
+[[https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua]]))()
+
+local v44 = t2[8]
+local uDim2 = UDim2.fromOffset(605, 405)
+local End = Enum.KeyCode.End
+local v47 = t2[7].DisplayName or 'Player'
+local CreateWindow = v44.CreateWindow
+local color3 = Color3.fromRGB(127, 127, 127)
+
+t2[10] = CreateWindow(v44, {
+    Title = 'Null \u{2606}',
+    SubTitle = 'Touchline Soccer',
+    Search = false,
+    TabWidth = 145,
+    Size = uDim2,
+    Acrylic = false,
+    Theme = 'Darker',
+    MinimizeKey = End,
+    UserInfo = true,
+    UserInfoTop = false,
+    UserInfoTitle = v47,
+    UserInfoSubtitle = 'Touchline Soccer',
+    UserInfoSubtitleColor = color3,
+})
+
+local v50 = t2[10]
+local GetIcon = v43.GetIcon
+local AddTab = v50.AddTab
+local v53 = GetIcon(v43, 'library', 'Lucide')
+local v54 = AddTab(v50, {
+    Title = "Info's",
+    Icon = v53,
+})
+local v55 = t2[10]
+local AddTab2 = v55.AddTab
+local Icon = v43:GetIcon('sports_soccer', 'Material')
+local v58 = AddTab2(v55, {
+    Title = 'Reach',
+    Icon = Icon,
+})
+local v59 = t2[10]
+local AddTab3 = v59.AddTab
+local Icon2 = v43:GetIcon('hand', 'Phosphor')
+local v62 = AddTab3(v59, {
+    Title = 'Goalkeeper',
+    Icon = Icon2,
+})
+local v63 = t2[10]
+local AddTab4 = v63.AddTab
+local Icon3 = v43:GetIcon('magic-wand', 'Phosphor')
+local v66 = AddTab4(v63, {
+    Title = 'Helpers',
+    Icon = Icon3,
+})
+local v67 = t2[10]
+local GetIcon2 = v43.GetIcon
+local AddTab5 = v67.AddTab
+local v70 = GetIcon2(v43, 'layout-dashboard', 'Lucide')
+local v71 = AddTab5(v67, {
+    Title = 'Miscellaneous',
+    Icon = v70,
+})
+local v72 = t2[10]
+local AddTab6 = v72.AddTab
+local Icon4 = v43:GetIcon('cloud', 'Lucide')
+local v75 = AddTab6(v72, {
+    Title = 'Skyes',
+    Icon = Icon4,
+})
+local v76 = t2[10]
+local GetIcon3 = v43.GetIcon
+local AddTab7 = v76.AddTab
+local v79 = GetIcon3(v43, 'tune', 'Material')
+local v80 = AddTab7(v76, {
+    Title = 'Config',
+    Icon = v79,
+})
+
+t2[11] = {
+    Home = v54,
+    Reach = v58,
+    GK = v62,
+    Helpers = v66,
+    Misc = v71,
+    Skyes = v75,
+    Config = v80,
+}
+
+local v81 = t2[11].Reach:AddSubTab('Ball Reach', v43:GetIcon('sports_soccer', 'Material'))
+local v82 = t2[11].Reach:AddSubTab('Leg Reach', v43:GetIcon('merge', 'Lucide'))
+local v83 = t2[11].Helpers:AddSubTab('Air Helper', v43:GetIcon('rocket', 'Lucide'))
+local v84 = t2[11].Helpers:AddSubTab('Ball Predict', v43:GetIcon('trending-up', 'Lucide'))
+local v85 = t2[11].Misc:AddSubTab('Main', v43:GetIcon('house-line', 'Phospor'))
+
+t2[12] = t2[11].Misc:AddSubTab('Private', v43:GetIcon('lock', 'Lucide'))
+t2[13] = {
+    Enabled = true,
+    Transparency = 0,
+    CornerRadius = 8,
+    Darken = 0,
+}
+t2[14] = 14
+
+local t11 = {
+    {
+        assetId = 'rbxassetid://114141856323017',
+        cols = 5,
+        rows = 5,
+        sheetWidth = 1020,
+        sheetHeight = 575,
+        count = 25,
+    },
+    {
+        assetId = 'rbxassetid://89737140153032',
+        cols = 5,
+        rows = 3,
+        sheetWidth = 1020,
+        sheetHeight = 345,
+        count = 13,
+    },
+}
+
+t2[15] = {}
+
+for v89, v90 in ipairs(t11)do
+    local v91 = v90.sheetWidth / v90.cols
+    local v92 = v90.sheetHeight / v90.rows
+
+    for i = 1, v90.count do
+        local v94 = (i - 1) % v90.cols
+
+        t1[3] = math.floor((i - 1) / v90.cols)
+        t1[2] = table.insert
+
+        local v95 = t2[15]
+        local assetId = v90.assetId
+
+        t1[3] = Vector2.new(v94 * v91, t1[3] * v92)
+
+        local vector2 = Vector2.new(v91, v92)
+
+        t1[2](v95, {
+            Image = assetId,
+            Offset = t1[3],
+            Size = vector2,
+        })
+    end
+end
+
+local t12 = {}
+
+for _, v in ipairs(t11)do
+    table.insert(t12, v.assetId)
+end
+
+ContentProvider:PreloadAsync(t12)
+
+t2[16] = function(p2)
+    return Color3.fromRGB(255 * (1 - p2), 255 * (1 - p2), 255 * (1 - p2))
+end
+t2[17] = function(p3, p4)
+    local v227 = t2[15][p4]
+
+    p3.Image = v227.Image
+    p3.ImageRectOffset = v227.Offset
+    p3.ImageRectSize = v227.Size
+end
+
+local t13 = {
+    container = nil,
+    frameLabels = {},
+    connections = {},
+    playing = false,
+    scrim = nil,
+}
+
+t2[18] = nil
+t2[18] = t13
+t2[19] = function()
+    t2[18].playing = false
+
+    if t2[18].container then
+        t2[18].container:Destroy()
+
+        t2[18].container = nil
+    end
+
+    t2[18].frameLabels = {}
+    t2[18].scrim = nil
+
+    for _, v in ipairs(t2[18].connections)do
+        local v231 = v
+
+        pcall(function()
+            v231:Disconnect()
+        end)
+    end
+
+    t2[18].connections = {}
+end
+
+local function v102()
+    t2[19]()
+
+    local Root = t2[10].Root
+
+    if not Root then
+        warn('[Wallpaper] janela do Fluent nao encontrada.')
+
+        return
+    end
+
+    local Frame = Instance.new('Frame')
+
+    Frame.Name = 'BackgroundContainer'
+    Frame.BackgroundTransparency = 1
+    Frame.BorderSizePixel = 0
+    Frame.Size = UDim2.fromScale(1, 1)
+    Frame.Position = UDim2.fromScale(0, 0)
+    Frame.ZIndex = 1
+    Frame.Parent = Root
+
+    Frame:SetAttribute('BackgroundImage', true)
+
+    local v234
+    local v235, v236, v237 = ipairs(Root:GetChildren())
+    local g239
+    local v238
+
+    repeat
+        v237, v238 = v235(v236, v237)
+
+        if not v237 then
+            g239 = true
+        end
+        if g239 then
+            break
+        end
+    until v238:IsA('Frame') and (v238 ~= Frame and v238.ZIndex <= 1)
+
+    if not g239 then
+        v234 = v238
+    end
+
+    g239 = false
+
+    if v234 then
+        Frame.Parent = v234
+
+        local n1 = 0
+        local GetChildren = v234.GetChildren
+
+        for _, v in ipairs(GetChildren(v234))do
+            local v244 = v
+            local v245 = v244 ~= Frame
+
+            if v245 then
+                v245 = pcall(function()
+                    return v244.ZIndex
+                end) and n1 < v244.ZIndex
+            end
+            if v245 then
+                n1 = v244.ZIndex
+            end
+        end
+
+        Frame.ZIndex = n1 + 1
+    end
+
+    local uDim = UDim.new(0, t2[13].CornerRadius)
+
+    local function v247(p5)
+        local ImageLabel = Instance.new('ImageLabel')
+
+        ImageLabel.Name = 'SpriteFrame'
+        ImageLabel.ImageTransparency = t2[13].Transparency
+        ImageLabel.ImageColor3 = t2[16](t2[13].Darken)
+        ImageLabel.ScaleType = Enum.ScaleType.Crop
+        ImageLabel.BackgroundTransparency = 1
+        ImageLabel.BorderSizePixel = 0
+        ImageLabel.Size = UDim2.fromScale(1, 1)
+        ImageLabel.Position = UDim2.fromScale(0, 0)
+        ImageLabel.ZIndex = p5
+
+        local UICorner = Instance.new('UICorner')
+
+        UICorner.CornerRadius = uDim
+        UICorner.Parent = ImageLabel
+        ImageLabel.Parent = Frame
+
+        return ImageLabel
+    end
+
+    local v248 = v247(2)
+    local v249 = v247(1)
+
+    t2[17](v248, 1)
+    t2[17](v249, 1)
+
+    local Frame2 = Instance.new('Frame')
+
+    Frame2.Name = 'WallpaperScrim'
+    Frame2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    Frame2.BackgroundTransparency = 0.22
+    Frame2.BorderSizePixel = 0
+    Frame2.Size = UDim2.fromScale(1, 1)
+    Frame2.Position = UDim2.fromScale(0, 0)
+    Frame2.ZIndex = 3
+
+    local UICorner = Instance.new('UICorner')
+
+    UICorner.CornerRadius = uDim
+    UICorner.Parent = Frame2
+    Frame2.Parent = Frame
+    t2[18].container = Frame
+    t2[18].frameLabels = {v248, v249}
+    t2[18].scrim = Frame2
+
+    local function v252()
+        if not Frame.Parent then
+            return
+        end
+
+        Frame.Visible = Root.Visible and Root:FindFirstAncestorOfClass('ScreenGui').Enabled
+    end
+
+    table.insert(t2[18].connections, t2[4].RenderStepped:Connect(v252))
+
+    t2[18].playing = true
+
+    local v253 = #t2[15]
+    local v254 = 1 / t2[14]
+    local Transparency = t2[13].Transparency
+    local v256 = v254 * (v253 - 1) * 2
+    local v257 = v248
+    local v258 = v249
+    local n2 = 1
+    local n3 = 0
+    local connection
+
+    connection = t2[4].RenderStepped:Connect(function(dt)
+        if not t2[18].playing or not Frame.Parent then
+            connection:Disconnect()
+
+            return
+        end
+
+        n3 += dt
+
+        local v620 = v254
+        local v621 = n3 % v256 / v620
+
+        if v621 > v253 - 1 then
+            v621 = v256 / v254 - v621
+        end
+
+        local v622 = math.floor(v621 + 0.5) + 1
+
+        if v622 ~= 1 then
+            t2[17](v258, v622)
+
+            v258.ImageTransparency = 1
+            v258.ZIndex = 3
+            n2 = 0
+        end
+        if n2 < 1 then
+            n2 = math.min(1, n2 + dt / 0.03)
+            v258.ImageTransparency = 1 + (Transparency - 1) * n2
+
+            if n2 >= 1 then
+                v257.ZIndex = 1
+                v257.ImageTransparency = Transparency
+                v258.ZIndex = 2
+                v258.ImageTransparency = Transparency
+            end
+        end
+    end)
+
+    table.insert(t2[18].connections, connection)
+    v252()
+end
+
+t2[20] = os.clock()
+t2[21] = function(p6)
+    local v263 = math.floor(p6 / 3600)
+    local v264 = math.floor(p6 % 3600 / 60)
+    local v265 = math.floor(p6 % 60)
+
+    return string.format('%02d:%02d:%02d', v263, v264, v265)
+end
+
+task.spawn(function()
+    while task.wait(1) do
+        local Root = t2[10].Root
+
+        if Root then
+            local UserInfoSection = Root:FindFirstChild('UserInfoSection', true)
+
+            if UserInfoSection then
+                local UserSubtitle = UserInfoSection:FindFirstChild('UserSubtitle')
+
+                if UserSubtitle then
+                    UserSubtitle.Text = 'Time : ' .. t2[21](os.clock() - t2[20])
+                end
+            end
+        end
+    end
+end)
+t2[11].Home:AddSection('Socials')
+
+local Home = t2[11].Home
+local AddButton = Home.AddButton
+
+t1[2] = function()
+    if setclipboard then
+        setclipboard('https://discord.gg/x9kK3tvgHT')
+    end
+end
+
+AddButton(Home, {
+    Title = 'Discord Server',
+    Callback = t1[2],
+})
+t2[11].Home:AddSection('UI Settings')
+t2[11].Home:AddToggle('Banner_Sakura', {
+    Title = 'Sakura Wallpaper',
+    Default = true,
+    Callback = function(p7)
+        if p7 then
+            v102()
+
+            return
+        end
+
+        t2[19]()
+    end,
+})
+t2[11].Home:AddSlider('Banner_Scrim', {
+    Title = 'Wallpaper Readability',
+    Description = 
+[[Darkens the GIF behind the UI: higher = more readable, lower = GIF more visible]],
+    Default = 78,
+    Min = 0,
+    Max = 100,
+    Rounding = 1,
+    Callback = function(p8)
+        local v271 = t2[18]
+
+        if v271 then
+            v271 = t2[18].scrim
+        end
+        if v271 then
+            v271.BackgroundTransparency = 1 - p8 / 100
+        end
+    end,
+})
+t2[11].Home:AddSection('Script Logs')
+t2[11].Home:AddParagraph({
+    Title = '01/08/2026',
+    Content = 'Script release.',
+})
+task.defer(function()
+    if t2[13].Enabled then
+        v102()
+    end
+end)
+
+local color3_2 = Color3.fromRGB(150, 175, 255)
+local ForceField = Enum.Material.ForceField
+
+t2[22] = {
+    enabled = false,
+    reach = 4.5,
+    transparency = 0,
+    color = color3_2,
+    material = ForceField,
+    collision = true,
+}
+t2[23] = workspace:WaitForChild('Footballs')
+t2[24] = workspace:FindFirstChild('HawkStorage') or Instance.new('Folder', workspace)
+
+local v107 = t2[24]
+
+t2[25] = nil
+v107.Name = 'HawkStorage'
+t2[26] = nil
+t2[27] = nil
+t2[26] = nil
+t2[25] = nil
+t2[28] = nil
+t2[29] = nil
+t2[29] = function()
+    if t2[25] then
+        t2[25]:Destroy()
+
+        t2[25] = nil
+    end
+    if t2[26] then
+        t2[26]:Destroy()
+
+        t2[26] = nil
+    end
+    if t2[27] then
+        pcall(function()
+            t2[27].Size = Vector3.new(2.25, 2.25, 2.25)
+            t2[27].Transparency = 1
+            t2[27].CanCollide = true
+        end)
+
+        t2[27] = nil
+    end
+end
+t2[30] = function()
+    local Character = t2[7].Character
+
+    if not Character then
+        return nil
+    end
+
+    local HumanoidRootPart = Character:FindFirstChild('HumanoidRootPart')
+
+    if not HumanoidRootPart then
+        return nil
+    end
+
+    local v274
+    local huge = math.huge
+
+    for _, child in ipairs(t2[23]:GetChildren())do
+        if child:IsA('BasePart') and (child.Name == 'Ball' and child.Parent) then
+            local Magnitude = (HumanoidRootPart.Position - child.Position).Magnitude
+
+            if Magnitude < huge then
+                huge = Magnitude
+                v274 = child
+            end
+        end
+    end
+
+    return v274
+end
+t2[31] = function(p9)
+    if not p9 or not p9.Parent then
+        return
+    end
+
+    t2[29]()
+
+    local Clone = p9.Clone
+
+    t2[27] = p9
+
+    local v281 = Clone(p9)
+
+    for _, child in ipairs(v281:GetChildren())do
+        if child then
+            child:Destroy()
+        end
+    end
+
+    v281.Parent = t2[24]
+    v281.Anchored = true
+    v281.CanCollide = t2[22].collision
+    v281.CanTouch = true
+    v281.Transparency = 1
+    v281.Massless = true
+    v281.CustomPhysicalProperties = PhysicalProperties.new(0.001, 0, 0, 0, 0)
+    v281.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+    v281.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
+    t2[26] = v281
+
+    local Part = Instance.new('Part')
+
+    Part.Name = '_Query'
+    Part.Anchored = true
+    Part.CanCollide = false
+    Part.CanTouch = false
+    Part.CanQuery = true
+    Part.Transparency = 1
+    Part.Massless = true
+    Part.Size = v281.Size
+    Part.Parent = t2[24]
+    t2[25] = Part
+    p9.CanCollide = false
+    p9.Size = Vector3.new(t2[22].reach, t2[22].reach, t2[22].reach)
+    p9.Transparency = t2[22].transparency
+    p9.Color = t2[22].color
+    p9.Material = t2[22].material
+end
+
+local function v108()
+    if t2[28] then
+        return
+    end
+
+    t2[4].Stepped:Connect(function()
+        if not t2[22].enabled then
+            t2[29]()
+
+            return
+        end
+
+        local v623 = t2[30]()
+
+        if not v623 then
+            if t2[27] then
+                t2[29]()
+            end
+
+            return
+        end
+        if v623 ~= t2[27] then
+            t2[31](v623)
+
+            if not t2[26] then
+                return
+            end
+        end
+
+        local v624 = t2[27]
+
+        if v624 then
+            v624 = t2[26] and (t2[25] and t2[27].Parent)
+        end
+        if v624 then
+            t2[26].CollisionGroup = t2[27].CollisionGroup
+            t2[27].CanCollide = false
+            t2[27].Size = Vector3.new(t2[22].reach, t2[22].reach, t2[22].reach)
+            t2[26].CFrame = t2[27].CFrame
+            t2[25].CFrame = t2[26].CFrame
+            t2[25].Size = t2[26].Size
+
+            return
+        end
+
+        t2[29]()
+    end)
+end
+
+t2[32] = function()
+    if t2[28] then
+        t2[28]:Disconnect()
+
+        t2[28] = nil
+
+        t2[29]()
+    end
+end
+t2[33] = v81:AddToggle('BallReachEnabled', {
+    Title = 'Enable Ball Reach',
+    Default = false,
+    Callback = function(p10)
+        t2[22].enabled = p10
+
+        if p10 then
+            v108()
+
+            local v286 = t2[30]()
+
+            if v286 then
+                t2[31](v286)
+
+                return
+            end
+        else
+            t2[32]()
+        end
+    end,
+})
+t2[34] = Enum.KeyCode.C
+
+v81:AddKeybind('BallReachKeybind', {
+    Title = 'Ball Reach Keybind',
+    Mode = 'Toggle',
+    Default = 'C',
+    ChangedCallback = function(p11)
+        t2[34] = p11
+    end,
+})
+
+local reach = t2[22].reach
+
+v81:AddSlider('Size', {
+    Title = 'Reach Size',
+    Default = reach,
+    Min = 2.25,
+    Max = 35,
+    Rounding = 2.5,
+    Callback = function(p12)
+        t2[22].reach = p12
+
+        if t2[27] then
+            t2[27].Size = Vector3.new(p12, p12, p12)
+        end
+    end,
+})
+
+local AddToggle = v81.AddToggle
+local collision = t2[22].collision
+
+AddToggle(v81, 'Collision', {
+    Title = 'Ball Collision',
+    Default = collision,
+    Callback = function(p13)
+        t2[22].collision = p13
+
+        if t2[26] then
+            t2[26].CanCollide = p13
+        end
+    end,
+})
+v81:AddSection('Customization')
+
+local v112 = t2[22]
+local AddSlider = v81.AddSlider
+local transparency = v112.transparency
+
+AddSlider(v81, 'Transp', {
+    Title = 'Reach Transparency',
+    Default = transparency,
+    Min = 0,
+    Max = 1,
+    Rounding = 2,
+    Callback = function(p14)
+        t2[22].transparency = p14
+
+        if t2[27] then
+            t2[27].Transparency = p14
+        end
+    end,
+})
+
+local color = t2[22].color
+
+v81:AddColorpicker('Color', {
+    Title = 'Reach Color',
+    Default = color,
+    Callback = function(p15)
+        t2[22].color = p15
+
+        if t2[27] then
+            t2[27].Color = p15
+        end
+    end,
+})
+
+t1[3] = {
+    Title = 'Anti Ball Fling',
+    Description = 'Prevents you from being thrown 100km from the ball',
+    Callback = function()
+        loadstring(game:HttpGet(
+[[https://raw.githubusercontent.com/Skinny-yz/Hawk/refs/heads/main/Functions/02.lua]]))()
+    end,
+}
+
+v81:AddButton(t1[3])
+
+local color3_3 = Color3.fromRGB(255, 255, 255)
+
+t2[35] = {
+    Enabled = false,
+    Size = 10,
+    ShowHitbox = true,
+    HitboxTransparency = 0.5,
+    HitboxColor = color3_3,
+}
+t2[36] = Enum.KeyCode.F6
+t2[37] = nil
+t2[38] = nil
+t2[39] = nil
+t2[40] = nil
+t2[38] = nil
+
+local function v117()
+    if t2[37] then
+        return
+    end
+
+    t2[37] = Instance.new('Part')
+    t2[37].Name = 'LegReachHitbox'
+    t2[37].Anchored = true
+    t2[37].CanCollide = false
+    t2[37].CanTouch = false
+    t2[37].CanQuery = false
+    t2[37].CastShadow = false
+    t2[37].Massless = true
+    t2[37].Transparency = t2[35].HitboxTransparency
+    t2[37].Color = t2[35].HitboxColor
+    t2[37].Shape = Enum.PartType.Block
+    t2[37].Parent = workspace
+
+    if not t2[40] then
+        pcall(function()
+            t2[40] = hookmetamethod(game, '__namecall', newcclosure(function(
+                p16,
+                ...
+            )
+                local t14 = {...}
+                local v659 = getnamecallmethod()
+
+                if t2[35].Enabled and (p16 == workspace and v659 == 'GetPartBoundsInBox') then
+                    t14[2] = Vector3.new(t2[35].Size, t2[35].Size, t2[35].Size)
+
+                    return t2[40](p16, unpack(t14))
+                end
+
+                return t2[40](p16, ...)
+            end))
+        end)
+    end
+    if not t2[38] then
+        pcall(function()
+            t2[38] = hookfunction(workspace.GetPartBoundsInBox, function(...)
+                local t15 = {...}
+
+                if t2[35].Enabled then
+                    t15[3] = Vector3.new(t2[35].Size, t2[35].Size, t2[35].Size)
+
+                    return t2[38](unpack(t15))
+                end
+
+                return t2[38](...)
+            end)
+        end)
+    end
+    if not t2[39] then
+        t2[4].Stepped:Connect(function()
+            local Character = t2[7].Character
+
+            if Character then
+                local HumanoidRootPart = Character:FindFirstChild('HumanoidRootPart')
+
+                if HumanoidRootPart and t2[37] then
+                    t2[37].CFrame = HumanoidRootPart.CFrame
+                    t2[37].Size = Vector3.new(t2[35].Size, t2[35].Size, t2[35].Size)
+
+                    if t2[35].Enabled and t2[35].ShowHitbox then
+                        t2[37].Transparency = t2[35].HitboxTransparency
+                        t2[37].Color = t2[35].HitboxColor
+
+                        return
+                    end
+
+                    t2[37].Transparency = 1
+                end
+            end
+        end)
+    end
+end
+
+t2[41] = function()
+    if t2[39] then
+        t2[39]:Disconnect()
+
+        t2[39] = nil
+    end
+    if t2[37] then
+        t2[37]:Destroy()
+
+        t2[37] = nil
+    end
+    if t2[40] then
+        pcall(function()
+            hookmetamethod(game, '__namecall', t2[40])
+        end)
+
+        t2[40] = nil
+    end
+    if t2[38] then
+        pcall(function()
+            hookfunction(workspace.GetPartBoundsInBox, t2[38])
+        end)
+
+        t2[38] = nil
+    end
+end
+
+v82:AddSection('Leg Reach [Dont Use on Xeno/Solara]')
+
+t2[42] = v82:AddToggle('LegEnabled', {
+    Title = 'Enable Leg Reach',
+    Default = false,
+    Callback = function(p17)
+        t2[35].Enabled = p17
+
+        if p17 then
+            v117()
+            t2[8]:Notify({
+                Title = 'Leg Reach',
+                Content = 'ATIVADO - Pode causar lag!',
+                Duration = 2,
+            })
+
+            return
+        end
+
+        t2[41]()
+    end,
+})
+
+v82:AddKeybind('LegKeybind', {
+    Title = 'Leg Reach Keybind',
+    Mode = 'Toggle',
+    Default = 'F6',
+    ChangedCallback = function(p18)
+        t2[36] = p18
+    end,
+})
+v82:AddSection('Customization')
+
+local Size = t2[35].Size
+
+v82:AddSlider('LegReachSize', {
+    Title = 'Reach Size',
+    Default = Size,
+    Min = 1,
+    Max = 35,
+    Rounding = 1,
+    Callback = function(p19)
+        t2[35].Size = p19
+    end,
+})
+
+local ShowHitbox = t2[35].ShowHitbox
+
+v82:AddToggle('LegShowHitbox', {
+    Title = 'Show Hitbox',
+    Default = ShowHitbox,
+    Callback = function(p20)
+        t2[35].ShowHitbox = p20
+
+        if t2[37] then
+            local v296 = t2[37]
+
+            if p20 then
+                p20 = t2[35].HitboxTransparency
+            end
+
+            v296.Transparency = p20 or 1
+        end
+    end,
+})
+
+local HitboxTransparency = t2[35].HitboxTransparency
+
+v82:AddSlider('LegHitboxTransp', {
+    Title = 'Hitbox Transparency',
+    Default = HitboxTransparency,
+    Min = 0,
+    Max = 1,
+    Rounding = 2,
+    Callback = function(p21)
+        t2[35].HitboxTransparency = p21
+
+        if t2[37] and t2[35].ShowHitbox then
+            t2[37].Transparency = p21
+        end
+    end,
+})
+
+local v121 = t2[35]
+local AddColorpicker = v82.AddColorpicker
+local HitboxColor = v121.HitboxColor
+
+AddColorpicker(v82, 'LegHitboxColor', {
+    Title = 'Hitbox Color',
+    Default = HitboxColor,
+    Callback = function(p22)
+        t2[35].HitboxColor = p22
+
+        if t2[37] then
+            t2[37].Color = p22
+        end
+    end,
+})
+
+local color3_4 = Color3.fromRGB(0, 170, 255)
+
+t2[43] = {
+    enabled = false,
+    detectionDistance = 5,
+    clickInterval = 0.05,
+    showHitbox = true,
+    hitboxTransparency = 0.6,
+    hitboxColor = color3_4,
+}
+
+local F8 = Enum.KeyCode.F8
+
+t2[44] = nil
+t2[45] = F8
+t2[46] = 0
+t2[47] = 0
+t2[44] = nil
+t2[48] = nil
+t2[49] = function()
+    if t2[44] then
+        return
+    end
+
+    t2[44] = Instance.new('Part')
+    t2[44].Name = 'GK_Hitbox'
+    t2[44].Anchored = true
+    t2[44].CanCollide = false
+    t2[44].CanTouch = false
+    t2[44].CanQuery = false
+    t2[44].CastShadow = false
+    t2[44].Massless = true
+    t2[44].Transparency = 1
+    t2[44].Shape = Enum.PartType.Block
+    t2[44].Parent = workspace
+end
+t2[50] = function(p23)
+    local v300 = workspace:FindFirstChild('Stadium') and workspace.Stadium:FindFirstChild('Fields')
+
+    if not v300 then
+        return false
+    end
+
+    for _, child in ipairs(v300:GetChildren())do
+        local v303 = child:FindFirstChild('Hitboxes') and child.Hitboxes:FindFirstChild('Keeper')
+
+        if v303 then
+            for _, child2 in ipairs(v303:GetChildren())do
+                local GetChildren = child2.GetChildren
+
+                for _, v in ipairs(GetChildren(child2))do
+                    if not v:IsA('BasePart') then
+                        continue
+                    end
+
+                    local v309 = v.Size / 2
+                    local v310 = v.CFrame:PointToObjectSpace(p23)
+
+                    if math.abs(v310.X) <= v309.X and (math.abs(v310.Y) <= v309.Y and math.abs(v310.Z) <= v309.Z) then
+                        return true
+                    end
+                end
+            end
+        end
+    end
+
+    return false
+end
+t2[51] = t2[11].GK:AddToggle('GKEnabled', {
+    Title = 'Enable Auto GK',
+    Default = false,
+    Callback = function(p24)
+        t2[43].enabled = p24
+
+        if p24 then
+            t2[49]()
+
+            if not t2[48] then
+                t2[48] = t2[4].Stepped:Connect(function()
+                    t2[47] = t2[47] + 1
+
+                    if t2[47] % 3 ~= 0 then
+                        return
+                    end
+
+                    local Character = t2[7].Character
+                    local enabled = t2[43].enabled
+
+                    if enabled then
+                        enabled = t2[43].showHitbox and (Character and (Character:FindFirstChild('HumanoidRootPart') and t2[44]))
+                    end
+                    if enabled then
+                        local HumanoidRootPart = Character.HumanoidRootPart
+
+                        t2[44].Size = Vector3.new(t2[43].detectionDistance * 2, t2[43].detectionDistance * 2, t2[43].detectionDistance * 2)
+                        t2[44].CFrame = HumanoidRootPart.CFrame
+                        t2[44].Transparency = t2[43].hitboxTransparency
+                        t2[44].Color = t2[43].hitboxColor
+                    elseif t2[44] then
+                        t2[44].Transparency = 1
+                    end
+                    if not t2[43].enabled or (not Character or not Character:FindFirstChild('HumanoidRootPart')) then
+                        return
+                    end
+
+                    local HumanoidRootPart = Character.HumanoidRootPart
+                    local v631 = t2[7].PlayerGui:FindFirstChild('Main') and t2[7].PlayerGui.Main:FindFirstChild('Values')
+
+                    if not v631 or (not v631.Goalie or not v631.Goalie.Value) then
+                        return
+                    end
+                    if not t2[50](HumanoidRootPart.Position) then
+                        return
+                    end
+
+                    local Footballs = workspace:FindFirstChild('Footballs')
+
+                    if not Footballs then
+                        return
+                    end
+
+                    local GetChildren = Footballs.GetChildren
+
+                    for _, v in ipairs(GetChildren(Footballs))do
+                        if v:IsA('BasePart') and (v.Position - HumanoidRootPart.Position).Magnitude <= t2[43].detectionDistance then
+                            if not (tick() - t2[46] >= t2[43].clickInterval) then
+                                return
+                            end
+
+                            t2[46] = tick()
+
+                            local VirtualInputManager = game:GetService('VirtualInputManager')
+                            local v637 = t2[7].PlayerGui:FindFirstChild('Main') and t2[7].PlayerGui.Main.AbsoluteSize / 2 or Vector2.new(960, 540)
+
+                            VirtualInputManager:SendMouseButtonEvent(v637.X, v637.Y, 0, true, game, 0)
+                            VirtualInputManager:SendMouseButtonEvent(v637.X, v637.Y, 0, false, game, 0)
+
+                            return
+                        end
+                    end
+                end)
+
+                return
+            end
+        else
+            if t2[48] then
+                t2[48]:Disconnect()
+            end
+            if t2[44] then
+                t2[44]:Destroy()
+
+                t2[44] = nil
+            end
+        end
+    end,
+})
+
+t2[11].GK:AddKeybind('GKKeybind', {
+    Title = 'Auto GK Keybind',
+    Mode = 'Toggle',
+    Default = 'F8',
+    ChangedCallback = function(p25)
+        t2[45] = p25
+    end,
+})
+
+local GK = t2[11].GK
+local detectionDistance = t2[43].detectionDistance
+
+GK:AddSlider('GKDetectionDistance', {
+    Title = 'Detection Distance',
+    Default = detectionDistance,
+    Min = 2,
+    Max = 35,
+    Rounding = 1,
+    Callback = function(p26)
+        t2[43].detectionDistance = p26
+    end,
+})
+
+local GK2 = t2[11].GK
+local clickInterval = t2[43].clickInterval
+
+GK2:AddSlider('GKClickInterval', {
+    Title = 'Click Interval (s)',
+    Default = clickInterval,
+    Min = 0.01,
+    Max = 0.9,
+    Rounding = 3,
+    Callback = function(p27)
+        t2[43].clickInterval = p27
+    end,
+})
+t2[11].GK:AddSection('Customization')
+
+local GK3 = t2[11].GK
+local showHitbox = t2[43].showHitbox
+
+GK3:AddToggle('GKShowHitbox', {
+    Title = 'Show Detection Hitbox',
+    Default = showHitbox,
+    Callback = function(p28)
+        t2[43].showHitbox = p28
+
+        if not p28 and t2[44] then
+            t2[44].Transparency = 1
+        end
+    end,
+})
+
+local GK4 = t2[11].GK
+local hitboxTransparency = t2[43].hitboxTransparency
+
+GK4:AddSlider('GKHitboxTransp', {
+    Title = 'Hitbox Transparency',
+    Default = hitboxTransparency,
+    Min = 0,
+    Max = 1,
+    Rounding = 2,
+    Callback = function(p29)
+        t2[43].hitboxTransparency = p29
+    end,
+})
+
+local GK5 = t2[11].GK
+local hitboxColor = t2[43].hitboxColor
+
+GK5:AddColorpicker('GKHitboxColor', {
+    Title = 'Hitbox Color',
+    Default = hitboxColor,
+    Callback = function(p30)
+        t2[43].hitboxColor = p30
+    end,
+})
+
+local color3_5 = Color3.fromRGB(75, 75, 255)
+local ForceField2 = Enum.Material.ForceField
+
+t2[52] = {
+    Enabled = false,
+    Size = 5,
+    Transparency = 1,
+    Color = color3_5,
+    Material = ForceField2,
+    Thickness = 0.05,
+    Offset = 0,
+}
+t2[53] = Enum.KeyCode.F
+t2[54] = workspace:FindFirstChild('TPSPlatforms') or Instance.new('Folder', workspace)
+t2[54].Name = 'TPSPlatforms'
+t2[55] = {}
+t2[56] = nil
+
+local function v138(p31)
+    for _, v in pairs(t2[55])do
+        if v and v.Parent then
+            v.CanCollide = p31
+
+            if not p31 then
+                v.Transparency = 1
+            end
+        end
+    end
+end
+
+t2[57] = function(p32)
+    if t2[55][p32] then
+        return t2[55][p32]
+    end
+
+    local Part = Instance.new('Part')
+
+    Part.Name = '_Platform'
+    Part.Parent = t2[54]
+    Part.Anchored = true
+    Part.CanCollide = t2[52].Enabled
+    Part.CanTouch = false
+    Part.CanQuery = false
+    Part.CastShadow = false
+    Part.Massless = true
+    Part.Transparency = t2[52].Transparency
+    Part.Color = t2[52].Color
+    Part.Material = t2[52].Material
+    t2[55][p32] = Part
+
+    local connection
+
+    connection = t2[4].Stepped:Connect(function()
+        if not p32.Parent or not Part.Parent then
+            connection:Disconnect()
+
+            t2[55][p32] = nil
+
+            if Part.Parent then
+                Part:Destroy()
+            end
+
+            return
+        end
+
+        Part.Size = Vector3.new(t2[52].Size, t2[52].Thickness, t2[52].Size)
+        Part.Transparency = t2[52].Transparency
+        Part.Color = t2[52].Color
+        Part.Material = t2[52].Material
+        Part.CFrame = CFrame.new(p32.Position.X, p32.Position.Y - p32.Size.Y / 2 - t2[52].Thickness / 2 - t2[52].Offset, p32.Position.Z)
+        Part.CanCollide = t2[52].Enabled
+
+        if not t2[52].Enabled then
+            Part.Transparency = 1
+        end
+    end)
+
+    return Part
+end
+t2[58] = v83:AddToggle('AirEnabled', {
+    Title = 'Enable Air Helper',
+    Default = false,
+    Callback = function(p33)
+        t2[52].Enabled = p33
+
+        v138(p33)
+
+        if p33 then
+            if not t2[56] then
+                t2[56] = task.spawn(function()
+                    while t2[52].Enabled do
+                        task.wait(0.5)
+
+                        if t2[26] and (t2[26].Parent and not t2[55][t2[26] ]) then
+                            t2[57](t2[26])
+                        end
+                    end
+                end)
+
+                return
+            end
+        else
+            if t2[56] then
+                task.cancel(t2[56])
+            end
+
+            for _, v in pairs(t2[55])do
+                if v and v.Parent then
+                    v:Destroy()
+                end
+            end
+
+            t2[55] = {}
+        end
+    end,
+})
+
+v83:AddKeybind('AirKeybind', {
+    Title = 'Air Helper Keybind',
+    Mode = 'Toggle',
+    Default = 'F',
+    ChangedCallback = function(p34)
+        t2[53] = p34
+    end,
+})
+
+local Size2 = t2[52].Size
+
+v83:AddInput('AirHelperSize', {
+    Title = 'Air dribble helper size',
+    Description = 'use 5-6 for legit',
+    Default = Size2,
+    Placeholder = 'Input size',
+    Numeric = true,
+    Finished = true,
+    Callback = function(p35)
+        t2[52].Size = p35
+    end,
+})
+
+local Transparency = t2[52].Transparency
+
+v83:AddSlider('AirTransp', {
+    Title = 'Air Helper Transparency',
+    Default = Transparency,
+    Min = 0,
+    Max = 1,
+    Rounding = 2,
+    Callback = function(p36)
+        t2[52].Transparency = p36
+
+        for _, v in pairs(t2[55])do
+            if v and v.Parent then
+                v.Transparency = p36
+            end
+        end
+    end,
+})
+
+local color3_6 = Color3.fromRGB(255, 100, 0)
+local vector3 = Vector3.new(0, -196.2, 0)
+
+t2[59] = {
+    enabled = false,
+    steps = 40,
+    thickness = 0.2,
+    color = color3_6,
+    stepTime = 0.03,
+    gravity = vector3,
+}
+t2[60] = workspace:FindFirstChild('HawkPredictionLine') or Instance.new('Folder', workspace)
+t2[60].Name = 'HawkPredictionLine'
+t2[61] = {}
+t2[62] = 0
+t2[63] = table.create(100)
+t2[64] = 0
+t2[65] = function(p37)
+    local v333 = t2[61][p37]
+
+    if not v333 then
+        v333 = Instance.new('Part')
+        v333.Anchored = true
+        v333.CanCollide = false
+        v333.CanTouch = false
+        v333.CanQuery = false
+        v333.CastShadow = false
+        v333.Material = Enum.Material.Neon
+        t2[61][p37] = v333
+    end
+
+    return v333
+end
+t2[66] = function()
+    if t2[62] > 0 then
+        for i = 1, t2[62]do
+            local v335 = t2[61][i]
+
+            if v335 then
+                v335.Parent = nil
+            end
+        end
+
+        t2[62] = 0
+    end
+end
+t2[67] = RaycastParams.new()
+t2[67].FilterType = Enum.RaycastFilterType.Exclude
+
+local function v143()
+    local t16 = {}
+
+    for _, player in ipairs(t2[5]:GetPlayers())do
+        if player.Character then
+            table.insert(t16, player.Character)
+        end
+    end
+
+    t2[67].FilterDescendantsInstances = t16
+end
+
+v143()
+t2[5].PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(v143)
+end)
+t2[5].PlayerRemoving:Connect(v143)
+
+local function v144()
+    local Footballs = workspace:FindFirstChild('Footballs')
+
+    if Footballs then
+        local Character = t2[7].Character
+        local v342 = Character and Character:FindFirstChild('HumanoidRootPart')
+        local v343
+        local huge = math.huge
+
+        for _, child in ipairs(Footballs:GetChildren())do
+            if not (child:IsA('BasePart') and child.Name == 'Ball') then
+                continue
+            end
+            if not v342 then
+                return child
+            end
+
+            local Magnitude = (v342.Position - child.Position).Magnitude
+
+            if Magnitude < huge then
+                v343 = child
+                huge = Magnitude
+            end
+        end
+
+        if v343 then
+            return v343
+        end
+    end
+
+    return workspace:FindFirstChild('TPSSystem') and workspace.TPSSystem:FindFirstChild('TPS')
+end
+local function v145()
+    if not t2[59].enabled then
+        t2[66]()
+
+        return
+    end
+
+    local v348 = v144()
+
+    if not v348 or not v348.Parent then
+        t2[66]()
+
+        return
+    end
+
+    local v349 = v348.AssemblyLinearVelocity or v348.Velocity
+
+    if not v349 or v349.Magnitude < 0.2 then
+        t2[66]()
+
+        return
+    end
+
+    local Position = v348.Position
+
+    t2[63][1] = Position
+
+    local n4 = 1
+    local steps = t2[59].steps
+    local stepTime = t2[59].stepTime
+    local v354 = t2[59].gravity * stepTime
+
+    for _ = 1, steps do
+        v349 += v354
+
+        local v356 = Position + v349 * stepTime
+        local raycastResult = workspace:Raycast(Position, v356 - Position, t2[67])
+
+        if raycastResult then
+            v356 = raycastResult.Position
+
+            local Normal = raycastResult.Normal
+
+            v349 = (v349 - 2 * v349:Dot(Normal) * Normal) * 0.7
+        end
+        if math.abs(v349.Y) < 1 then
+            v356 = Vector3.new(v356.X, Position.Y, v356.Z)
+            v349 = Vector3.new(v349.X, 0, v349.Z)
+        end
+
+        n4 += 1
+
+        t2[63][n4] = v356
+        Position = v356
+
+        if v349.X * v349.X + v349.Z * v349.Z < 0.01 and v349.Y == 0 then
+            break
+        end
+    end
+
+    local v359 = n4 - 1
+    local thickness = t2[59].thickness
+    local color2 = t2[59].color
+    local v362 = false
+    local n5 = 0
+
+    while true do
+        n5 += 1
+
+        if (not v362 or not (v359 <= n5)) and (v362 or not (n5 <= v359)) then
+            break
+        end
+
+        local v364 = t2[63][n5]
+        local v365 = t2[63][n5 + 1]
+        local Magnitude = (v365 - v364).Magnitude
+
+        if Magnitude > 0.001 then
+            local v367 = t2[65](n5)
+
+            v367.Color = color2
+            v367.Size = Vector3.new(thickness, thickness, Magnitude)
+            v367.CFrame = CFrame.lookAt((v364 + v365) * 0.5, v365)
+
+            if v367.Parent ~= t2[60] then
+                v367.Parent = t2[60]
+            end
+        end
+    end
+
+    if v359 < t2[62] then
+        for i = v359 + 1, t2[62]do
+            local v369 = t2[61][i]
+
+            if v369 then
+                v369.Parent = nil
+            end
+        end
+    end
+
+    t2[62] = v359
+end
+
+task.spawn(function()
+    t2[4].Heartbeat:Connect(function(dt)
+        if t2[59].enabled then
+            t2[64] = t2[64] + dt
+
+            if t2[64] >= 0.016 then
+                v145()
+            end
+        end
+    end)
+end)
+
+local AddToggle2 = v84.AddToggle
+local enabled = t2[59].enabled
+
+AddToggle2(v84, 'BallPrediction', {
+    Title = 'Enable Ball Prediction',
+    Default = enabled,
+    Callback = function(p38)
+        t2[59].enabled = p38
+
+        if not p38 then
+            t2[66]()
+        end
+    end,
+})
+
+local steps = t2[59].steps
+
+v84:AddSlider('PredictionSteps', {
+    Title = 'Prediction Steps',
+    Default = steps,
+    Min = 10,
+    Max = 80,
+    Rounding = 0,
+    Callback = function(p39)
+        t2[59].steps = p39
+    end,
+})
+
+local color4 = t2[59].color
+
+v84:AddColorpicker('PredictionColor', {
+    Title = 'Prediction Line Color',
+    Default = color4,
+    Callback = function(p40)
+        t2[59].color = p40
+
+        for i = 1, t2[62]do
+            local v389 = t2[61][i]
+
+            if v389 then
+                v389.Color = p40
+            end
+        end
+    end,
+})
+v85:AddSection('Avatar Stealer')
+
+t2[68] = nil
+t2[69] = nil
+t2[69] = function(p41)
+    local gsub = string.gsub
+    local _tostring = tostring
+
+    if not p41 then
+        p41 = ''
+    end
+
+    return gsub(_tostring(p41), '^%s+', ''):gsub('%s+$', '')
+end
+t2[70] = function(p42)
+    if type(p42) == 'number' then
+        return p42
+    end
+    if type(p42) ~= 'string' then
+        return nil
+    end
+
+    local match = string.match(p42, '^%s*(%-?%d+)%s*$')
+
+    if match then
+        local ok, result = pcall(function()
+            return (tonumber(match))
+        end)
+
+        if ok then
+            ok = type(result) == 'number'
+        end
+        if ok then
+            return result
+        end
+    end
+
+    return nil
+end
+t2[71] = nil
+t2[71] = function(p43)
+    if not p43 then
+        return nil
+    end
+
+    local Humanoid = p43:FindFirstChildOfClass('Humanoid')
+
+    return Humanoid and (not not Humanoid:IsA('Humanoid') and Humanoid) or nil
+end
+t2[72] = nil
+t2[72] = function(p44, p45)
+    local v438 = os.clock() + (p45 or 3)
+
+    while v438 > os.clock() do
+        local Character = p44.Character
+
+        if Character and t2[71](Character) then
+            return Character
+        end
+
+        task.wait(0.05)
+    end
+
+    return p44.Character
+end
+t2[73] = function(p46)
+    local ok, result = pcall(function()
+        return p46:Clone()
+    end)
+
+    if ok then
+        ok = result and result:IsA('HumanoidDescription')
+    end
+
+    return ok and result or nil
+end
+t2[74] = function(p47)
+    local u430 = t2[69](p47)
+
+    if u430 == '' then
+        return nil, nil, nil
+    end
+    if string.sub(u430, 1, 1) == '@' then
+        u430 = t2[69]((string.sub(u430, 2)))
+    end
+
+    local v431 = string.lower(u430)
+
+    for _, player in ipairs(t2[5]:GetPlayers())do
+        if v431 == string.lower(player.Name) then
+            return player.Name, player.UserId, player
+        end
+    end
+
+    local ok, result = pcall(function()
+        return t2[5]:GetUserIdFromNameAsync(u430)
+    end)
+
+    if ok then
+        ok = type(result) == 'number' and result > 0
+    end
+    if ok then
+        return u430, result, nil
+    end
+
+    return nil, nil, nil
+end
+t2[75] = function(p48)
+    local v441 = t2[72](p48, 1.5)
+    local v442 = t2[71](v441)
+
+    if not v442 then
+        return nil
+    end
+
+    local ok, result = pcall(function()
+        return v442:GetAppliedDescription()
+    end)
+
+    return ok and (not not result and (not not result:IsA('HumanoidDescription') and result)) or nil
+end
+t2[76] = function(p49)
+    local ok, result = pcall(function()
+        return t2[5]:GetHumanoidDescriptionFromUserId(p49)
+    end)
+
+    if ok then
+        ok = result and result:IsA('HumanoidDescription')
+    end
+    if ok then
+        return result
+    end
+
+    return nil
+end
+t2[77] = function(p50)
+    local str = tostring(p50)
+    local u379 = 'rbxassetid://' .. str
+    local t17 = {}
+    local ok, result = pcall(function()
+        return game:GetObjects(u379)
+    end)
+
+    if ok then
+        ok = type(result) == 'table'
+    end
+    if ok then
+        for _, v in ipairs(result)do
+            if typeof(v) == 'Instance' then
+                table.insert(t17, v)
+            end
+        end
+
+        if #t17 > 0 then
+            return t17
+        end
+    end
+
+    local ok5, result3 = pcall(function()
+        return t2[6]:LoadLocalAsset(u379)
+    end)
+
+    if ok5 then
+        ok5 = typeof(result3) == 'Instance'
+    end
+    if ok5 then
+        table.insert(t17, result3)
+    end
+
+    return t17
+end
+t2[78] = function(p51)
+    local t18 = {}
+    local t19 = {}
+    local gmatch = string.gmatch
+    local _tostring = tostring
+
+    if not p51 then
+        p51 = ''
+    end
+
+    for v450 in gmatch(_tostring(p51), '[^%,]+')do
+        local v451 = t2[70](v450)
+
+        if v451 and v451 > 0 then
+            local v452 = math.floor(v451)
+
+            if not t19[v452] then
+                t19[v452] = true
+
+                table.insert(t18, v452)
+            end
+        end
+    end
+
+    return t18
+end
+t2[79] = function(p52)
+    local u463
+    local t20 = {}
+    local t21 = {}
+
+    function u463(p53)
+        if p53 and (p53 > 0 and not t21[p53]) then
+            t21[p53] = true
+
+            table.insert(t20, p53)
+        end
+    end
+
+    pcall(function()
+        local Accessories = p52:GetAccessories(true)
+
+        if type(Accessories) == 'table' then
+            for _, v in ipairs(Accessories)do
+                if type(v) == 'table' then
+                    local v642 = t2[70](v.AssetId or v.assetId)
+
+                    if v642 then
+                        u463((math.floor(v642)))
+                    end
+                elseif typeof(v) == 'Instance' then
+                    local v643 = t2[70](v.AssetId)
+
+                    if v643 then
+                        u463((math.floor(v643)))
+                    end
+                end
+            end
+        end
+    end)
+
+    local t22 = {
+        p52.HatAccessory,
+        p52.HairAccessory,
+        p52.FaceAccessory,
+        p52.NeckAccessory,
+        p52.ShouldersAccessory,
+        p52.FrontAccessory,
+        p52.BackAccessory,
+        p52.WaistAccessory,
+    }
+
+    for _, v in ipairs(t22)do
+        for _, v2 in ipairs(t2[78](v))do
+            u463(v2)
+        end
+    end
+
+    return t20
+end
+t2[80] = function(p54)
+    p54.Anchored = false
+    p54.CanCollide = false
+    p54.CanTouch = false
+    p54.CanQuery = false
+    p54.Massless = true
+
+    for _, child in ipairs(p54:GetChildren())do
+        if child:IsA('Weld') or (child:IsA('WeldConstraint') or child.Name == 'AccessoryWeld') then
+            child:Destroy()
+        end
+    end
+end
+t2[81] = function(p55, p56)
+    local Handle = p56:FindFirstChild('Handle')
+
+    if not Handle or not Handle:IsA('BasePart') then
+        p56.Parent = p55
+
+        return p55 == p56.Parent
+    end
+
+    t2[80](Handle)
+
+    local v474 = t2[71](p55)
+    local g481
+
+    if v474 then
+        p56.Parent = game
+
+        if pcall(function()
+            v474:AddAccessory(p56)
+        end) and p55 == p56.Parent and (Handle:FindFirstChild('AccessoryWeld') or Handle:FindFirstChildOfClass('Weld')) then
+            return true
+        end
+    end
+
+    local GetChildren = Handle.GetChildren
+
+    p56.Parent = p55
+
+    local v476
+    local v477, v478, v479 = ipairs(GetChildren(Handle))
+    local v480
+
+    repeat
+        v479, v480 = v477(v478, v479)
+
+        if not v479 then
+            g481 = true
+        end
+        if g481 then
+            break
+        end
+    until v480:IsA('Attachment')
+
+    if not g481 then
+        v476 = v480
+    end
+
+    g481 = false
+
+    local Name
+
+    if v476 then
+        Name = p55:FindFirstChild(v476.Name, true)
+    end
+    if Name and (Name.Parent and Name.Parent:IsA('BasePart')) then
+        local Weld = Instance.new('Weld')
+
+        Weld.Name = 'AccessoryWeld'
+        Weld.Part0 = Name.Parent
+        Weld.Part1 = Handle
+        Weld.C0 = v476 and Name.CFrame or CFrame.new(0, 0.5, 0)
+        Weld.C1 = v476 and v476.CFrame or CFrame.new()
+        Weld.Parent = Handle
+
+        return true
+    end
+
+    local Head = p55:FindFirstChild('Head')
+
+    if Head and Head:IsA('BasePart') then
+        local Weld = Instance.new('Weld')
+
+        Weld.Name = 'AccessoryWeld'
+        Weld.Part0 = Head
+        Weld.Part1 = Handle
+        Weld.C0 = CFrame.new(0, 0.6, 0)
+        Weld.C1 = CFrame.new()
+        Weld.Parent = Handle
+
+        return true
+    end
+
+    return p55 == p56.Parent
+end
+t2[82] = function(p57)
+    local t23 = {}
+
+    if p57:IsA('Accessory') or p57:IsA('Hat') then
+        table.insert(t23, p57)
+
+        return t23
+    end
+
+    local GetChildren = p57.GetChildren
+
+    for _, v in ipairs(GetChildren(p57))do
+        if v:IsA('Accessory') or v:IsA('Hat') then
+            table.insert(t23, v)
+        end
+    end
+
+    return t23
+end
+t2[83] = function(p58, p59, p60)
+    local p59Name = p59.Name
+
+    if p60[p59Name] then
+        local n6 = 2
+
+        while p60[p59Name .. '_' .. tostring(n6)] do
+            n6 += 1
+        end
+
+        p59Name ..= '_' .. tostring(n6)
+
+        p59.Name = p59Name
+    end
+
+    local clone = p59:Clone()
+
+    clone.Name = p59Name
+
+    local v492 = t2[81](p58, clone)
+
+    if v492 then
+        p60[p59Name] = true
+
+        return v492
+    end
+
+    pcall(function()
+        clone:Destroy()
+    end)
+
+    return v492
+end
+t2[84] = function(p61)
+    for _, child in ipairs(p61:GetChildren())do
+        local v421 = child:IsA('Accessory')
+
+        if not v421 then
+            v421 = child:IsA('Hat')
+
+            if not v421 then
+                v421 = child:IsA('Shirt')
+
+                if not v421 then
+                    v421 = child:IsA('Pants')
+
+                    if not v421 then
+                        v421 = child:IsA('ShirtGraphic') or (child:IsA('BodyColors') or child:IsA('CharacterMesh'))
+                    end
+                end
+            end
+        end
+        if v421 then
+            child:Destroy()
+        end
+    end
+
+    local Head = p61:FindFirstChild('Head')
+
+    if Head then
+        local GetChildren = Head.GetChildren
+
+        for _, v in ipairs(GetChildren(Head))do
+            if v:IsA('Decal') or v:IsA('Texture') then
+                v:Destroy()
+            end
+        end
+    end
+end
+t2[85] = nil
+t2[85] = function(p62, p63)
+    if not p62 or not p63 then
+        return false
+    end
+
+    local Head = p62:FindFirstChild('Head')
+    local Head2 = p63:FindFirstChild('Head')
+
+    if not Head or not Head2 then
+        return false
+    end
+
+    for _, child in ipairs(Head:GetChildren())do
+        if child:IsA('Decal') or (child:IsA('Texture') or child:IsA('SpecialMesh')) then
+            child:Destroy()
+        end
+    end
+
+    Head.Color = Head2.Color
+    Head.Material = Head2.Material
+    Head.Transparency = Head2.Transparency
+    Head.Reflectance = Head2.Reflectance
+
+    local SpecialMesh = Head2:FindFirstChildOfClass('SpecialMesh')
+
+    if SpecialMesh then
+        SpecialMesh:Clone().Parent = Head
+    end
+
+    local GetChildren = Head2.GetChildren
+
+    for _, v in ipairs(GetChildren(Head2))do
+        if v:IsA('Attachment') then
+            v:Clone().Parent = Head
+        end
+    end
+    for v405, v406 in ipairs(Head2:GetChildren())do
+        if v406:IsA('Decal') or v406:IsA('Texture') then
+            v406:Clone().Parent = Head
+        end
+    end
+
+    local HeadScale = Head2:FindFirstChild('HeadScale')
+
+    if HeadScale then
+        local v408 = Head:FindFirstChild('HeadScale') or Instance.new('ObjectValue')
+
+        v408.Name = 'HeadScale'
+        v408.Value = HeadScale.Value
+        v408.Parent = Head
+    end
+
+    return true
+end
+t2[86] = function(p64, p65)
+    local v495 = t2[72](t2[7], 3)
+
+    if not v495 then
+        return false, 'No local character found'
+    end
+
+    local v496 = t2[71](v495)
+
+    if not v496 then
+        return false, 'No humanoid found'
+    end
+
+    local RigType = v496.RigType
+    local v498 = t2[73](p64) or p64
+    local t24 = {}
+    local u500
+    local ok, result = pcall(function()
+        return t2[5]:CreateHumanoidModelFromDescription(v498, RigType)
+    end)
+
+    if ok then
+        ok = typeof(result) == 'Instance' and result:IsA('Model')
+    end
+    if ok then
+        u500 = result
+    end
+
+    t2[84](v495)
+
+    if u500 then
+        for _, child in ipairs(u500:GetChildren())do
+            local v505 = child:IsA('Shirt')
+
+            if not v505 then
+                v505 = child:IsA('Pants')
+
+                if not v505 then
+                    v505 = child:IsA('ShirtGraphic')
+
+                    if not v505 then
+                        v505 = child:IsA('BodyColors')
+
+                        if not v505 then
+                            v505 = child:IsA('CharacterMesh')
+                        end
+                    end
+                end
+            end
+            if v505 then
+                child:Clone().Parent = v495
+            end
+        end
+    end
+    if not v495:FindFirstChildOfClass('BodyColors') then
+        local BodyColors = Instance.new('BodyColors')
+
+        BodyColors.HeadColor3 = v498.HeadColor
+        BodyColors.TorsoColor3 = v498.TorsoColor
+        BodyColors.LeftArmColor3 = v498.LeftArmColor
+        BodyColors.RightArmColor3 = v498.RightArmColor
+        BodyColors.LeftLegColor3 = v498.LeftLegColor
+        BodyColors.RightLegColor3 = v498.RightLegColor
+        BodyColors.Parent = v495
+    end
+
+    local v507 = p65 or u500
+
+    if v507 and (not t2[85](v495, v507) and u500) then
+        t2[85](v495, u500)
+    end
+    if not v495:FindFirstChild('Head') then
+        local Part = Instance.new('Part')
+
+        Part.Name = 'Head'
+        Part.Size = Vector3.new(2, 2, 1.25)
+        Part.Parent = v495
+    end
+    if p65 then
+        for _, v in ipairs(t2[82](p65))do
+            t2[83](v495, v, t24)
+        end
+    end
+    if u500 then
+        for _, v in ipairs(t2[82](u500))do
+            t2[83](v495, v, t24)
+        end
+    end
+
+    local v513 = t2[79](v498)
+
+    for v516, v517 in ipairs(v513)do
+        for _, v in ipairs(t2[77](v517))do
+            for _, v16 in ipairs(t2[82](v))do
+                t2[83](v495, v16, t24)
+            end
+        end
+    end
+
+    if u500 then
+        pcall(function()
+            u500:Destroy()
+        end)
+    end
+
+    return true, 'Avatar successfully swapped'
+end
+t2[87] = function()
+    local v453 = t2[72](t2[7], 3)
+    local v454 = t2[71](v453)
+
+    if v454 then
+        local ok, result = pcall(function()
+            return v454:GetAppliedDescription()
+        end)
+
+        if ok then
+            ok = result and result:IsA('HumanoidDescription')
+        end
+        if ok then
+            t2[68] = t2[73](result) or result
+
+            return true
+        end
+    end
+
+    local ok, result = pcall(function()
+        return t2[5]:GetHumanoidDescriptionFromUserId(t2[7].UserId)
+    end)
+
+    if ok then
+        ok = result and result:IsA('HumanoidDescription')
+    end
+    if ok then
+        t2[68] = t2[73](result) or result
+
+        return true
+    end
+
+    return false
+end
+t2[88] = function(p66)
+    if not t2[68] then
+        t2[87]()
+    end
+
+    local _, v524, v525 = t2[74](p66)
+
+    if not v524 then
+        return false, 'User not found!'
+    end
+
+    local v526
+    local v527
+
+    if v525 then
+        v526 = t2[72](v525, 1.5)
+        v527 = t2[75](v525)
+    end
+    if not v527 then
+        v527 = t2[76](v524)
+    end
+    if not v527 then
+        return false, 'Could not load avatar'
+    end
+
+    return t2[86](v527, v526)
+end
+t2[89] = function()
+    if not t2[68] then
+        t2[87]()
+    end
+    if not t2[68] then
+        return false, 'No backup avatar saved'
+    end
+
+    local v528 = t2[73](t2[68]) or t2[68]
+
+    return t2[86](v528, nil)
+end
+t2[90] = ''
+
+v85:AddInput('AvatarStealerInput', {
+    Title = 'Steal Username',
+    Default = '',
+    Placeholder = 'Username',
+    Finished = false,
+    Callback = function(p67)
+        t2[90] = t2[69](p67)
+    end,
+})
+v85:AddButton({
+    Title = 'Steal',
+    Description = 'Change avatar instantly by username',
+    Callback = function()
+        if t2[90] == '' then
+            t2[8]:Notify({
+                Title = 'Avatar Stealer',
+                Content = 'Enter a username!',
+                Duration = 1.5,
+            })
+
+            return
+        end
+
+        t2[8]:Notify({
+            Title = 'Avatar Stealer',
+            Content = 'Swapping avatar...',
+            Duration = 1,
+        })
+        task.spawn(function()
+            local v645, v646 = t2[88](t2[90])
+            local v647 = t2[8]
+
+            if not v646 then
+                v646 = not v645 and 'Failed' or 'Swapped!'
+            end
+
+            v647:Notify({
+                Title = 'Avatar Stealer',
+                Content = v646,
+                Duration = 2,
+            })
+        end)
+    end,
+})
+v85:AddButton({
+    Title = 'Restore My Avatar',
+    Description = 'Restores your original character appearance',
+    Callback = function()
+        t2[8]:Notify({
+            Title = 'Avatar Stealer',
+            Content = 'Restoring...',
+            Duration = 1,
+        })
+        task.spawn(function()
+            local v648, v649 = t2[89]()
+            local v650 = t2[8]
+
+            if not v649 then
+                v649 = not v648 and 'Failed' or 'Restored!'
+            end
+
+            v650:Notify({
+                Title = 'Avatar Stealer',
+                Content = v649,
+                Duration = 2,
+            })
+        end)
+    end,
+})
+v85:AddSection('Network & Physics')
+v85:AddParagraph({
+    Title = 'Clumsy Lag',
+    Content = 'Replication lag: 0.01 (+10ms) or 0.02 (+20ms)',
+})
+v85:AddInput('Clumsy', {
+    Title = 'Clumsy Lag',
+    Default = '0',
+    Placeholder = 'Number',
+    Numeric = true,
+    Finished = true,
+    Callback = function(p68)
+        settings():GetService('NetworkSettings').IncomingReplicationLag = tonumber(p68) or 0
+    end,
+})
+v85:AddButton({
+    Title = 'No Collision Characters',
+    Description = 'Passes through other player characters.',
+    Callback = function()
+        loadstring(game:HttpGet(
+[[https://raw.githubusercontent.com/Skinny-yz/Hawk/refs/heads/main/Functions/01.lua]]))()
+    end,
+})
+
+t2[91] = nil
+
+v85:AddSection('No Cooldown')
+v85:AddParagraph({
+    Title = 'Warn about it',
+    Content = 
+[[It removes the dive/tackle cooldown
+please take advantage of this to perform infinite tackles, just do it legitimately]],
+})
+v85:AddToggle('NoTackleCooldown', {
+    Title = 'No Tackle/Dive Cooldown',
+    Default = false,
+    Callback = function(p69)
+        if p69 then
+            local ok, result = pcall(function()
+                return require(game:GetService('ReplicatedStorage').Modules.Touch)
+            end)
+            local v534 = result
+
+            if ok then
+                ok = v534 and v534.Tackle
+            end
+            if ok then
+                t2[91] = t2[4].Heartbeat:Connect(function()
+                    pcall(function()
+                        debug.setupvalue(v534.Tackle, 3, false)
+                        debug.setupvalue(v534.Tackle, 4, false)
+                    end)
+                end)
+
+                return
+            end
+
+            t2[8]:Notify({
+                Title = 'Tackle Cooldown',
+                Content = 'Touch module not found!',
+                Duration = 2,
+            })
+
+            return
+        end
+        if t2[91] then
+            t2[91]:Disconnect()
+        end
+    end,
+})
+
+t2[92] = ''
+t2[93] = t2[12]:AddParagraph({
+    Title = '\u{1f512} Private Area',
+    Content = 'Enter the password to unlock this tab.',
+})
+t2[94] = t2[12]:AddInput('PrivatePassword', {
+    Title = 'Password',
+    Default = '',
+    Placeholder = 'Enter password...',
+    Callback = function(p70)
+        t2[92] = p70
+    end,
+})
+
+t2[12]:AddButton({
+    Title = 'Unlock',
+    Callback = function()
+        if t2[92] == 'shezelindo' then
+            t2[93]:Visible(false)
+            t2[94]:Visible(false)
+            privateButton:Visible(false)
+            t2[12]:AddSection('Private Features')
+            t2[12]:AddToggle('PrivateTestToggle', {
+                Title = 'Test Toggle',
+                Default = false,
+                Callback = function(p71)
+                    local v652 = t2[8]
+                    local v653 = 'Test toggle: ' .. tostring(p71)
+
+                    v652:Notify({
+                        Title = 'Private',
+                        Content = v653,
+                        Duration = 2,
+                    })
+                end,
+            })
+            t2[8]:Notify({
+                Title = 'Private',
+                Content = 'Unlocked successfully!',
+                Duration = 2,
+            })
+
+            return
+        end
+
+        t2[8]:Notify({
+            Title = 'Private',
+            Content = 'Incorrect password!',
+            Duration = 2,
+        })
+    end,
+})
+
+t2[95] = function(p72)
+    local Sky = Instance.new('Sky')
+
+    Sky.Parent = game.Lighting
+    Sky.SkyboxBk = 'rbxassetid://' .. p72.Bk
+    Sky.SkyboxDn = 'rbxassetid://' .. p72.Dn
+    Sky.SkyboxFt = 'rbxassetid://' .. p72.Ft
+    Sky.SkyboxLf = 'rbxassetid://' .. p72.Lf
+    Sky.SkyboxRt = 'rbxassetid://' .. p72.Rt
+    Sky.SkyboxUp = 'rbxassetid://' .. p72.Up
+    Sky.StarCount = p72.StarCount or 0
+end
+
+local t25 = {
+    Bk = '12064107',
+    Dn = '12064152',
+    Ft = '12064121',
+    Lf = '12063984',
+    Rt = '12064115',
+    Up = '12064131',
+    StarCount = 0,
+}
+local t26 = {
+    Bk = '48020371',
+    Dn = '48020144',
+    Ft = '48020234',
+    Lf = '48020211',
+    Rt = '48020254',
+    Up = '48020383',
+    StarCount = 3000,
+}
+local t27 = {
+    Bk = '271042516',
+    Dn = '271077243',
+    Ft = '271042556',
+    Lf = '271042310',
+    Rt = '271042467',
+    Up = '271077958',
+    StarCount = 1334,
+}
+local t28 = {
+    Bk = '15983968922',
+    Dn = '15983966825',
+    Ft = '15983965025',
+    Lf = '15983967420',
+    Rt = '15983966246',
+    Up = '15983964246',
+    StarCount = 3000,
+}
+local t29 = {
+    Bk = '5084575798',
+    Dn = '5084575916',
+    Ft = '5103949679',
+    Lf = '5103948542',
+    Rt = '5103948784',
+    Up = '5084576400',
+    StarCount = 3000,
+}
+local t30 = {
+    Bk = '458016711',
+    Dn = '458016826',
+    Ft = '458016532',
+    Lf = '458016655',
+    Rt = '458016782',
+    Up = '458016792',
+    StarCount = 3000,
+}
+local t31 = {
+    Bk = '570557514',
+    Dn = '570557775',
+    Ft = '570557559',
+    Lf = '570557620',
+    Rt = '570557672',
+    Up = '570557727',
+    StarCount = 3000,
+}
+local t32 = {
+    Bk = '18703245834',
+    Dn = '18703243349',
+    Ft = '18703240532',
+    Lf = '18703240532',
+    Rt = '18703235430',
+    Up = '18703232671',
+    StarCount = 3500,
+}
+local t33 = {
+    Bk = '160188495',
+    Dn = '160188614',
+    Ft = '160188609',
+    Lf = '160188589',
+    Rt = '160188597',
+    Up = '160188588',
+    StarCount = 3000,
+}
+local t34 = {
+    Bk = '11555017034',
+    Dn = '11555013415',
+    Ft = '11555010145',
+    Lf = '11555006545',
+    Rt = '11555000712',
+    Up = '11554996247',
+    StarCount = 3000,
+}
+local t35 = {
+    Bk = '368385273',
+    Dn = '48015300',
+    Ft = '368388290',
+    Lf = '368390615',
+    Rt = '368390615',
+    Up = '48015387',
+    StarCount = 3000,
+}
+local t36 = {
+    Bk = '17901353811',
+    Dn = '17901366771',
+    Ft = '17901356262',
+    Lf = '17901359687',
+    Rt = '17901362326',
+    Up = '17901365106',
+    StarCount = 3000,
+}
+
+t2[96] = {
+    NightSky = t25,
+    ScaryNight = t26,
+    SakuraSky = t27,
+    CakeUpNightSkyGalaxyPlanets = t28,
+    PurpleNightSky = t29,
+    SunsetOrange = t30,
+    PurpleSky = t31,
+    GraySky = t32,
+    MountainSky = t33,
+    PinkiePreppySky = t34,
+    MountainSky2 = t35,
+    SunsetMountainSky = t36,
+}
+
+local function v162(p73, p74)
+    t2[11].Skyes:AddButton({
+        Title = p74,
+        Callback = function()
+            local v654 = t2[96][p73]
+
+            t2[95](v654)
+        end,
+    })
+end
+
+v162('NightSky', 'Night Sky')
+v162('ScaryNight', 'Scary Night')
+v162('SakuraSky', 'Sakura Sky')
+v162('CakeUpNightSkyGalaxyPlanets', 'Cake Up Night Sky Galaxy Planets')
+v162('PurpleNightSky', 'Purple Night Sky')
+v162('SunsetOrange', 'Sunset Orange')
+v162('PurpleSky', 'Purple Sky')
+v162('GraySky', 'Gray Sky')
+v162('MountainSky', 'Mountain Sky')
+v162('PinkiePreppySky', 'Pinkie Preppy Sky')
+v162('MountainSky2', 'Mountain Sky 2')
+v162('SunsetMountainSky', 'Sunset Mountain Sky')
+
+local v163 = t2[11].Config:AddSubTab('Visibility', v43:GetIcon('eye', 'Lucide'))
+local v164 = t2[11].Config:AddSubTab('Order', v43:GetIcon('list-ordered', 'Lucide'))
+local v165 = t2[11].Config:AddSubTab('General', v43:GetIcon('settings', 'Lucide'))
+
+v163:AddSection('Tab Visibility')
+
+local Home2 = t2[11].Home
+local t37 = {
+    key = 'Home',
+    tab = Home2,
+}
+local Reach = t2[11].Reach
+local t38 = {
+    key = 'Reach',
+    tab = Reach,
+}
+local GK6 = t2[11].GK
+local t39 = {
+    key = 'GK',
+    tab = GK6,
+}
+local Helpers = t2[11].Helpers
+local t40 = {
+    key = 'Helpers',
+    tab = Helpers,
+}
+local Misc = t2[11].Misc
+local t41 = {
+    key = 'Misc',
+    tab = Misc,
+}
+local Skyes = t2[11].Skyes
+local t42 = {
+    t37,
+    t38,
+    t39,
+    t40,
+    t41,
+    {
+        key = 'Skyes',
+        tab = Skyes,
+    },
+}
+
+t2[97] = nil
+t2[97] = t42
+t2[98] = function(p75)
+    p75.tab.Frame.Visible = true
+end
+t2[99] = function(p76)
+    local tab = p76.tab
+
+    if not tab or not tab.Frame then
+        return
+    end
+    if tab.Selected then
+        for _, v in ipairs(t2[97])do
+            local v544 = v ~= p76
+
+            if v544 then
+                v544 = v.tab.Frame
+
+                if v544 then
+                    v544 = v.tab.Frame.Visible
+                end
+            end
+            if not v544 then
+                continue
+            end
+
+            local n7 = 0
+
+            for i, v17 in ipairs(t2[97])do
+                if v17 == v then
+                    n7 = i + 1
+
+                    break
+                end
+            end
+
+            if n7 > 0 then
+                t2[10]:SelectTab(n7)
+
+                break
+            end
+        end
+    end
+
+    tab.Frame.Visible = false
+end
+
+for _, v in ipairs(t2[97])do
+    local v180 = v
+    local key = v180.key
+
+    v163:AddToggle('Show_' .. v180.key, {
+        Title = 'Show ' .. key,
+        Default = true,
+        Callback = function(p77)
+            if p77 then
+                t2[98](v180)
+
+                return
+            end
+
+            t2[99](v180)
+        end,
+    })
+end
+
+v164:AddSection('Tab Order')
+
+t2[100] = function()
+    local TabHolder = t2[10].TabHolder
+
+    if not TabHolder then
+        return {}
+    end
+
+    local GetChildren = TabHolder.GetChildren
+    local t43 = {}
+
+    for _, v in ipairs(GetChildren(TabHolder))do
+        if v:IsA('TextButton') then
+            local TextLabel = v:FindFirstChildOfClass('TextLabel')
+
+            if TextLabel then
+                local insert = table.insert
+                local vLayoutOrder = v.LayoutOrder
+                local TextLabelText = TextLabel.Text
+
+                insert(t43, {
+                    order = vLayoutOrder,
+                    name = TextLabelText,
+                })
+            end
+        end
+    end
+
+    table.sort(t43, function(p78, p79)
+        return p78.order < p79.order
+    end)
+
+    local t44 = {}
+
+    for _, v in ipairs(t43)do
+        table.insert(t44, v.name)
+    end
+
+    return t44
+end
+t2[101] = function(p80)
+    local TabHolder = t2[10].TabHolder
+
+    if not TabHolder or type(p80) ~= 'table' then
+        return
+    end
+
+    local GetChildren = TabHolder.GetChildren
+    local t45 = {}
+
+    for v556, v557 in ipairs(GetChildren(TabHolder))do
+        if v557:IsA('TextButton') then
+            local TextLabel = v557:FindFirstChildOfClass('TextLabel')
+
+            if TextLabel then
+                t45[TextLabel.Text] = v557
+            end
+        end
+    end
+    for i, v in ipairs(p80)do
+        local v561 = t45[v]
+
+        if v561 then
+            v561.LayoutOrder = i
+        end
+    end
+end
+t2[102] = nil
+t2[103] = function(p81, p82)
+    local v576 = t2[100]()
+    local v577
+    local v578, v579, v580 = ipairs(v576)
+    local g582
+
+    repeat
+        local v581
+
+        v580, v581 = v578(v579, v580)
+
+        if not v580 then
+            g582 = true
+        end
+        if g582 then
+            break
+        end
+    until v581 == p81
+
+    if not g582 then
+        v577 = v580
+    end
+    if not v577 then
+        return
+    end
+
+    local v583 = v577 + p82
+
+    if v583 < 1 or v583 > #v576 then
+        return
+    end
+
+    local v584 = v576[v583]
+    local v585 = v576[v577]
+
+    v576[v577] = v584
+    v576[v583] = v585
+
+    t2[101](v576)
+
+    if t2[102] then
+        t2[102]:SetValues(v576)
+        t2[102]:SetValue(p81)
+    end
+end
+t2[104] = t2[100]()
+
+local v182 = t2[100]()
+local AddDropdown = v164.AddDropdown
+local v184 = t2[104][1]
+
+t2[102] = AddDropdown(v164, 'TabOrderSelect', {
+    Title = 'Select Tab',
+    Description = 'Pick a tab, then use the buttons below to reorder it.',
+    Values = v182,
+    Default = v184,
+})
+
+v164:AddButton({
+    Title = 'Move Up',
+    Callback = function()
+        local v586 = t2[102] and t2[102].Value
+
+        if v586 then
+            t2[103](v586, -1)
+        end
+    end,
+})
+v164:AddButton({
+    Title = 'Move Down',
+    Callback = function()
+        local v587 = t2[102] and t2[102].Value
+
+        if v587 then
+            t2[103](v587, 1)
+        end
+    end,
+})
+v164:AddButton({
+    Title = 'Reset Order',
+    Callback = function()
+        t2[101](t2[104])
+
+        if t2[102] then
+            t2[102]:SetValues(t2[104])
+            t2[102]:SetValue(t2[104][1])
+        end
+    end,
+})
+t2[9]:SetLibrary(t2[8])
+t2[9]:SetFolder('NullTouchline')
+t2[9]:SetIgnoreIndexes({
+    'SaveManager_ConfigList',
+    'SaveManager_ConfigName',
+})
+t1[1]:SetLibrary(t2[8])
+t1[1]:SetFolder('NullTouchline')
+
+t1[1].Settings.Theme = 'Darker'
+t1[1].Settings.MenuKeybind = 'End'
+t1[1].Settings.Transparency = false
+t1[1].Settings.Acrylic = false
+t2[105] = game:GetService('HttpService')
+t2[106] = t2[9].Save
+t2[9].Save = function(p83, p84)
+    local v590, v591 = t2[106](p83, p84)
+
+    if not v590 then
+        return v590, v591
+    end
+
+    local v592 = p83.Folder .. '/settings/' .. p84 .. '.json'
+    local ok, result = pcall(t2[105].JSONDecode, t2[105], readfile(v592))
+    local v595 = result
+
+    if ok then
+        ok = type(v595) == 'table'
+    end
+    if ok then
+        v595.tabOrder = t2[100]()
+
+        pcall(function()
+            writefile(v592, t2[105]:JSONEncode(v595))
+        end)
+    end
+
+    return true
+end
+t2[107] = t2[9].Load
+t2[9].Load = function(p85, p86)
+    local v598, v599 = t2[107](p85, p86)
+    local v600 = p85.Folder .. '/settings/' .. p86 .. '.json'
+
+    if isfile(v600) then
+        local ok, result = pcall(t2[105].JSONDecode, t2[105], readfile(v600))
+
+        if ok then
+            ok = type(result) == 'table' and type(result.tabOrder) == 'table'
+        end
+        if ok then
+            t2[101](result.tabOrder)
+
+            if t2[102] then
+                local v603 = t2[102]
+                local t46 = {
+                    t2[100](),
+                }
+
+                v603:SetValues(v3(t46))
+            end
+        end
+    end
+
+    return v598, v599
+end
+
+t1[1]:BuildInterfaceSection(v165)
+t2[9]:BuildConfigSection(v165)
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if gameProcessed then
+        return
+    end
+    if input.KeyCode == t2[34] then
+        t2[22].enabled = not t2[22].enabled
+
+        t2[33]:SetValue(t2[22].enabled)
+
+        if t2[22].enabled then
+            v108()
+
+            local v607 = t2[30]()
+
+            if v607 then
+                t2[31](v607)
+            end
+        else
+            t2[32]()
+        end
+
+        local v608 = t2[8]
+        local v609 = not t2[22].enabled and 'Disabled' or 'Enabled'
+
+        v608:Notify({
+            Title = 'Ball Reach',
+            Content = v609,
+            Duration = 1.5,
+        })
+    end
+    if input.KeyCode == t2[53] then
+        t2[52].Enabled = not t2[52].Enabled
+
+        t2[58]:SetValue(t2[52].Enabled)
+
+        local v610 = t2[8]
+        local v611 = not t2[52].Enabled and 'Disabled' or 'Enabled'
+
+        v610:Notify({
+            Title = 'Air Helper',
+            Content = v611,
+            Duration = 1.5,
+        })
+    end
+    if input.KeyCode == t2[36] then
+        t2[35].Enabled = not t2[35].Enabled
+
+        t2[42]:SetValue(t2[35].Enabled)
+
+        if t2[35].Enabled then
+            v117()
+        else
+            t2[41]()
+        end
+
+        local v612 = t2[8]
+        local v613 = not t2[35].Enabled and 'Disabled' or 'Enabled'
+
+        v612:Notify({
+            Title = 'Leg Reach',
+            Content = v613,
+            Duration = 1.5,
+        })
+    end
+    if input.KeyCode == t2[45] then
+        t2[43].enabled = not t2[43].enabled
+
+        t2[51]:SetValue(t2[43].enabled)
+
+        local v614 = t2[8]
+        local v615 = not t2[43].enabled and 'Disabled' or 'Enabled'
+
+        v614:Notify({
+            Title = 'Auto GK',
+            Content = v615,
+            Duration = 1.5,
+        })
+    end
+end)
+t2[10]:SelectTab(1)
+task.defer(function()
+    if type(t2[9].LoadAutoloadConfig) == 'function' then
+        pcall(function()
+            t2[9]:LoadAutoloadConfig()
+        end)
+    end
+end)
