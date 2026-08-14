@@ -463,7 +463,12 @@ end
 
 local v43 = loadstring(game:HttpGet('https://p.ip.fi/MzAW.txt'))()
 
-t2[8] = loadstring(game:HttpGet('https://raw.githubusercontent.com/ProvokerSD/Product/refs/heads/main/Assets/Main/.lua'))()
+t2[8] = loadstring(game:HttpGet(
+[[https://raw.githubusercontent.com/discoart/FluentPlus/refs/heads/main/Beta.lua]]))()
+t2[9] = loadstring(game:HttpGet(
+[[https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua]]))()
+t1[1] = loadstring(game:HttpGet(
+[[https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua]]))()
 
 local v44 = t2[8]
 local uDim2 = UDim2.fromOffset(605, 405)
