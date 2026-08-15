@@ -305,7 +305,7 @@ if v4 then
         end
     end)
 else
-    print('Executor n\u{e3}o \u{e9} Xeno - Anti-Tamper desativado')
+    print('Executor não é Xeno - Anti-Tamper desativado')
 end
 
 t2[4] = game:GetService('RunService')
@@ -429,39 +429,50 @@ end
 v38(t1[1]:GetService('CoreGui'))
 v38(t2[7].PlayerGui)
 
-t1[1] = Instance.new('ScreenGui')
+-- Custom Mobile Toggle Creation with Controls Protection
+local ToggleGui = Instance.new('ScreenGui')
+ToggleGui.Name = 'MobileToggleGui'
+ToggleGui.ResetOnSpawn = false
+ToggleGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+pcall(function()
+    ToggleGui.Parent = gethui()
+end)
+if not ToggleGui.Parent then
+    ToggleGui.Parent = game:GetService('CoreGui')
+end
 
 local ImageButton = Instance.new('ImageButton')
 local UICorner = Instance.new('UICorner')
-local CoreGui = game:GetService('CoreGui')
 
-t1[1].Name = 'UniversalToggleGui'
-t1[1].Parent = gethui and gethui() or CoreGui
-
-local Sibling = Enum.ZIndexBehavior.Sibling
-
-t1[1].ZIndexBehavior = Sibling
-ImageButton.Parent = t1[1]
-ImageButton.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-ImageButton.BackgroundTransparency = 1
+ImageButton.Parent = ToggleGui
+ImageButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+ImageButton.BackgroundTransparency = 0.2
 ImageButton.BorderSizePixel = 0
-ImageButton.Position = UDim2.new(0, 209, 0, 50)
+ImageButton.Position = UDim2.new(0.05, 0, 0.2, 0)
 ImageButton.Size = UDim2.new(0, 45, 0, 45)
 ImageButton.Draggable = true
+ImageButton.Active = true
 ImageButton.Image = 'http://www.roblox.com/asset/?id=113136039614918'
 UICorner.CornerRadius = UDim.new(1, 0)
 UICorner.Parent = ImageButton
 
-local function triggerToggle()
-    local VirtualInputManager = game:GetService('VirtualInputManager')
-
-    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.End, false, game)
-    task.wait(0.1)
-    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.End, false, game)
+local function toggleUIWindow()
+    if t2[10] then
+        if t2[10].Minimize then
+            t2[10]:Minimize()
+        elseif t2[10].Root then
+            t2[10].Root.Visible = not t2[10].Root.Visible
+        end
+    else
+        local VirtualInputManager = game:GetService('VirtualInputManager')
+        VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.End, false, game)
+        task.wait(0.05)
+        VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.End, false, game)
+    end
 end
 
-ImageButton.MouseButton1Down:Connect(triggerToggle)
-ImageButton.TouchTap:Connect(triggerToggle)
+ImageButton.MouseButton1Click:Connect(toggleUIWindow)
 
 local v43 = loadstring(game:HttpGet('https://p.ip.fi/MzAW.txt'))()
 
@@ -480,7 +491,7 @@ local CreateWindow = v44.CreateWindow
 local color3 = Color3.fromRGB(127, 127, 127)
 
 t2[10] = CreateWindow(v44, {
-    Title = 'Null \u{2606}',
+    Title = 'Null ☆',
     SubTitle = 'Touchline Soccer',
     Search = false,
     TabWidth = 145,
@@ -2791,30 +2802,14 @@ v85:AddButton({
                 Content = 'Enter a username!',
                 Duration = 1.5,
             })
-
             return
         end
-
-        
-                t2[8]:Notify({
+        local success, msg = t2[88](t2[90])
+        t2[8]:Notify({
             Title = 'Avatar Stealer',
-            Content = 'Swapping avatar...',
-            Duration = 1,
+            Content = msg or (success and 'Success' or 'Failed'),
+            Duration = 2,
         })
-        task.spawn(function()
-            local v645, v646 = t2[88](t2[90])
-            local v647 = t2[8]
-
-            if not v646 then
-                v646 = not v645 and 'Failed' or 'Swapped!'
-            end
-
-            v647:Notify({
-                Title = 'Avatar Stealer',
-                Content = v646,
-                Duration = 2,
-            })
-        end)
     end,
 })
 v85:AddButton({
@@ -3551,4 +3546,3 @@ task.defer(function()
         end)
     end
 end)
-
