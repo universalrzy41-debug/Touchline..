@@ -478,7 +478,7 @@ local CreateWindow = v44.CreateWindow
 local color3 = Color3.fromRGB(127, 127, 127)
 
 t2[10] = CreateWindow(v44, {
-    Title = 'Null \u{2606}',
+    Title = 'Null ~ \u{2606}',
     SubTitle = 'Touchline Soccer',
     Search = false,
     TabWidth = 145,
@@ -883,7 +883,7 @@ local AddButton = Home.AddButton
 
 t1[2] = function()
     if setclipboard then
-        setclipboard('https://discord.gg/x9kK3tvgHT')
+        setclipboard('dsc.gg/Null-ontop)
     end
 end
 
@@ -926,7 +926,7 @@ t2[11].Home:AddSlider('Banner_Scrim', {
 })
 t2[11].Home:AddSection('Script Logs')
 t2[11].Home:AddParagraph({
-    Title = '01/08/2026',
+    Title = '',
     Content = 'Script release.',
 })
 task.defer(function()
