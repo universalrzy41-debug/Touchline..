@@ -443,25 +443,17 @@ if not ToggleGui.Parent then
 end
 
 local ImageButton = Instance.new('ImageButton')
-    local UICorner = Instance.new('UICorner')
-    local CoreGui = game.CoreGui
+local UICorner = Instance.new('UICorner')
 
-    t1[1].Parent = CoreGui
-
-    local Sibling = Enum.ZIndexBehavior.Sibling
-
-    t1[1].ZIndexBehavior = Sibling
-    ImageButton.Parent = t1[1]
-    ImageButton.BackgroundColor3 = Color3.fromRGB(1, 1, 1)
-    ImageButton.BackgroundTransparency = 1
-    ImageButton.BorderSizePixel = 0
-    ImageButton.Position = UDim2.new(3.390842095996E-7, 209, 0, -47)
-    ImageButton.Size = UDim2.new(0, 45, 0, 45)
-    ImageButton.Draggable = true
-    ImageButton.Image = 'http://www.roblox.com/asset/?id=87603352924740'
-    UICorner.CornerRadius = UDim.new(1, 0)
-    UICorner.Parent = ImageButton
-
+ImageButton.Parent = ToggleGui
+ImageButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+ImageButton.BackgroundTransparency = 0.2
+ImageButton.BorderSizePixel = 0
+ImageButton.Position = UDim2.new(0.05, 0, 0.2, 0)
+ImageButton.Size = UDim2.new(0, 45, 0, 45)
+ImageButton.Draggable = true
+ImageButton.Active = true
+ImageButton.Image = 'http://www.roblox.com/asset/?id=113136039614918'
 UICorner.CornerRadius = UDim.new(1, 0)
 UICorner.Parent = ImageButton
 
@@ -2810,14 +2802,29 @@ v85:AddButton({
                 Content = 'Enter a username!',
                 Duration = 1.5,
             })
+
             return
         end
-        local success, msg = t2[88](t2[90])
+
         t2[8]:Notify({
             Title = 'Avatar Stealer',
-            Content = msg or (success and 'Success' or 'Failed'),
-            Duration = 2,
+            Content = 'Swapping avatar...',
+            Duration = 1,
         })
+        task.spawn(function()
+            local v645, v646 = t2[88](t2[90])
+            local v647 = t2[8]
+
+            if not v646 then
+                v646 = not v645 and 'Failed' or 'Swapped!'
+            end
+
+            v647:Notify({
+                Title = 'Avatar Stealer',
+                Content = v646,
+                Duration = 2,
+            })
+        end)
     end,
 })
 v85:AddButton({
