@@ -454,8 +454,7 @@ ImageButton.Size = UDim2.new(0, 45, 0, 45)
 ImageButton.Draggable = true
 ImageButton.Active = true
 
--- Updated with your new logo ID:
-ImageButton.Image = 'rbxassetid://87603352924740'
+ImageButton.Image = "rbxthumb://type=Asset&id=87603352924740&w=150&h=150"
 
 UICorner.CornerRadius = UDim.new(1, 0)
 UICorner.Parent = ImageButton
