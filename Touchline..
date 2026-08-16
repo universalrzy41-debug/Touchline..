@@ -429,6 +429,18 @@ end
 v38(t1[1]:GetService('CoreGui'))
 v38(t2[7].PlayerGui)
 
+local ToggleGui = Instance.new('ScreenGui')
+ToggleGui.Name = 'MobileToggleGui'
+ToggleGui.ResetOnSpawn = false
+ToggleGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+pcall(function()
+    ToggleGui.Parent = gethui()
+end)
+if not ToggleGui.Parent then
+    ToggleGui.Parent = game:GetService('CoreGui')
+end
+
 local ImageButton = Instance.new('ImageButton')
 local UICorner = Instance.new('UICorner')
 
