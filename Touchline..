@@ -1,4 +1,4 @@
-local t1 = {}
+Local t1 = {}
 local t2 = {}
 local v3 = unpack or table.unpack
 
@@ -429,6 +429,7 @@ end
 v38(t1[1]:GetService('CoreGui'))
 v38(t2[7].PlayerGui)
 
+-- Custom Mobile Toggle Creation with Controls Protection
 local ToggleGui = Instance.new('ScreenGui')
 ToggleGui.Name = 'MobileToggleGui'
 ToggleGui.ResetOnSpawn = false
@@ -452,7 +453,7 @@ ImageButton.Position = UDim2.new(0.05, 0, 0.2, 0)
 ImageButton.Size = UDim2.new(0, 45, 0, 45)
 ImageButton.Draggable = true
 ImageButton.Active = true
-ImageButton.Image = "rbxassetid://120491753180703"
+ImageButton.Image = 'rbxassetid://120491753180703'
 UICorner.CornerRadius = UDim.new(1, 0)
 UICorner.Parent = ImageButton
 
