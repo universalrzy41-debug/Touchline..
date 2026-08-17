@@ -896,7 +896,7 @@ local AddButton = Home.AddButton
 
 t1[2] = function()
     if setclipboard then
-        setclipboard('https://discord.gg/x9kK3tvgHT')
+        setclipboard('dsc.gg/null-ontop')
     end
 end
 
@@ -939,7 +939,7 @@ t2[11].Home:AddSlider('Banner_Scrim', {
 })
 t2[11].Home:AddSection('Script Logs')
 t2[11].Home:AddParagraph({
-    Title = '01/08/2026',
+    Title = '17/08/2026',
     Content = 'Script release.',
 })
 task.defer(function()
