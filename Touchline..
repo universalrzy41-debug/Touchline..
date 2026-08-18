@@ -939,7 +939,7 @@ t2[11].Home:AddSlider('Banner_Scrim', {
 })
 t2[11].Home:AddSection('Script Logs')
 t2[11].Home:AddParagraph({
-    Title = '17/08/2026',
+    Title = '18/08/2026',
     Content = 'Script release.',
 })
 task.defer(function()
